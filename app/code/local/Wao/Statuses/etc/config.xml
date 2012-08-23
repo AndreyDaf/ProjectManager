@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Wao_Statuses>
+            <version>0.1.0</version>
+        </Wao_Statuses>
+    </modules>
+    
+    <global>   
+        <models>
+            <statuses>
+                <class>Wao_Statuses_Model</class>
+                <resourceModel>statuses_mysql4</resourceModel>
+            </statuses>
+            <statuses_mysql4>
+                <class>Wao_Statuses_Model_Mysql4</class>
+                <entities>
+                    <status>
+                        <table>wao_statuses</table>
+                    </status>
+                </entities>
+            </statuses_mysql4>
+        </models>
+        
+        <resources>
+            <statuses_setup>
+                <setup>
+                    <module>Wao_Statuses</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </statuses_setup>
+            
+            <statuses_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </statuses_write>
+            
+            <statuses_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </statuses_read>
+        </resources>
+             
+        <blocks>
+            <statuses>
+                <class>Wao_Statuses_Block</class>
+            </statuses>
+        </blocks>
+        
+        <helpers>
+            <statuses>
+                <class>Wao_Statuses_Helper</class>
+            </statuses>
+        </helpers>        
+    </global>
+    
+    
+    <admin>
+        <routers>
+            <statuses>
+                <use>admin</use>
+                <args>
+                    <module>Wao_Statuses</module>
+                    <frontName>statuses</frontName>
+                </args>
+            </statuses>
+        </routers>
+    </admin>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <statuses_options>
+                                            <title>Feedback Module Section</title>
+                                        </statuses_options>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <menu>
+            <statuses module="statuses">
+                <title>Statuses</title>
+                <sort_order>71</sort_order>
+                <children>
+                    <items module="statuses">
+                        <title>List Of Statuses</title>
+                        <sort_order>0</sort_order>
+                        <action>statuses/adminhtml_index</action>
+                    </items>
+                </children>
+            </statuses>
+        </menu>
+<!--        <layout>
+            <updates>
+                <statuses>
+                    <file>statuses.xml</file>
+                </statuses>
+            </updates>
+        </layout>-->
+    </adminhtml>
+    
+    
+    
+</config>
