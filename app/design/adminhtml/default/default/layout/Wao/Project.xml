@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <project_adminhtml_index_index>
+        <reference name="content">
+            <block type="project/adminhtml_projects" name="projects.grid_container" />
+        </reference>
+    </project_adminhtml_index_index>
+
+    <project_adminhtml_index_new>
+        <update handle="project_adminhtml_index_edit"/>
+    </project_adminhtml_index_new>
+
+    <project_adminhtml_index_edit>
+        <reference name="content">
+            <block type="project/adminhtml_edit" name="projects.edit" />
+        </reference>
+    </project_adminhtml_index_edit>
+    
+</layout>

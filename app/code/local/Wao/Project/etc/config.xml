@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Wao_Project>0.1.0</Wao_Project>
+    </modules>
+    
+    <global>
+        <blocks>
+            <project>
+                <class>Wao_Project_Block</class>
+            </project>
+        </blocks>
+        <models>
+            <project>
+                <class>Wao_Project_Model</class>
+                <resourceModel>project_mysql4</resourceModel>
+            </project>
+            <project_mysql4>
+                <class>Wao_Project_Model_Mysql4</class>
+                <entities>
+                    <project>
+                        <table>wao_projects</table>
+                    </project>
+                </entities>
+            </project_mysql4>
+        </models>
+        <resources>
+            <project_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </project_write>
+            <project_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </project_read>
+        </resources>
+    </global>
+    
+    <admin>
+        <routers>
+            <project>
+                <use>admin</use>
+                <args>
+                    <module>Wao_Project</module>
+                    <frontName>project</frontName>
+                </args>
+            </project>
+        </routers>
+    </admin>
+    
+    <adminhtml>
+        <menu>
+            <project module="adminhtml">
+                <title>Проекты</title>
+                <sort_order>100</sort_order>
+                <action>project/adminhtml_index</action>
+            </project>
+        </menu>
+        
+        <layout>
+            <updates>
+                <project>
+                    <file>Wao/Project.xml</file>
+                </project>
+            </updates>
+        </layout>
+        
+        <translate>
+            <modules>
+                <project>
+                    <files>
+                        <default>Wao_Project.csv</default>
+                    </files>
+                </project>
+            </modules>
+        </translate>
+    </adminhtml>
+    
+</config>
