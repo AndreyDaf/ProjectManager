@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Wao_Tasks>
+            <version>0.1.0</version>
+        </Wao_Tasks>
+    </modules>
+    <admin>
+        <routers>
+            <tasks>
+                <use>admin</use>
+                <args>
+                    <module>Wao_Tasks</module>
+                    <frontName>tasks</frontName>
+                </args>
+            </tasks>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <manage module="adminhtml">
+                <title>Задания</title>
+                <sort_order>100</sort_order>
+                <action>tasks/adminhtml_index</action>
+            </manage>
+            <mytasks module="adminhtml">
+                <title>Мои задания</title>
+                <sort_order>100</sort_order>
+                <action>tasks/adminhtml_index/tasks</action>
+            </mytasks>
+        </menu>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <manage  module="adminhtml">
+                            <title>Редактор заданий</title>
+                            <sort_order>-1</sort_order>
+                        </manage>
+                        <mytasks  module="adminhtml">
+                            <title>Мои задания</title>
+                            <sort_order>-2</sort_order>
+                        </mytasks>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <tasks>
+                    <files>
+                        <default>Wao_Tasks.csv</default>
+                    </files>
+                </tasks>
+            </modules>
+        </translate>
+    </adminhtml>
+    <global>  
+        <blocks>
+		<tasks>
+			<class>Wao_Tasks_Block</class>
+		</tasks>
+	</blocks>
+        <models>
+          <tasks>
+                <class>Wao_Tasks_Model</class>
+                <resourceModel>tasks_resource</resourceModel>
+            </tasks>
+            <tasks_resource>
+                <class>Wao_Tasks_Model_Resource</class>
+                <deprecatedNode>tasks_mysql4</deprecatedNode>
+                <entities>
+                    <tasks>
+                        <table>wao_tasks</table>
+                    </tasks>
+                    <projects>
+                        <table>wao_projects</table>
+                    </projects>
+                    <statuses>
+                        <table>wao_statuses</table>
+                    </statuses>
+                    <developers>
+                        <table>wao_developers</table>
+                    </developers>
+                  </entities>  
+            </tasks_resource>
+        </models>
+         <resources>
+             <tasks_setup>
+                 <setup>
+                     <module>Wao_Tasks</module>
+                 </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </tasks_setup>
+            <tasks_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </tasks_write>
+            <tasks_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </tasks_read>
+          </resources>
+     </global>
+</config>
