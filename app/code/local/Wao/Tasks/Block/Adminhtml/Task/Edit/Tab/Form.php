@@ -15,14 +15,16 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
             $i++;
         }
         
-        //$arrr = Mage::getModel('tasks/developers')->getCollection()->getProjectId($tasks_data);
-        //$arrr["developers"] = "1";
-        echo "<pre>";
-       // var_dump($arrr);
-        echo "</pre>";
         if(Mage::helper('core')->isModuleEnabled('Wao_Project')){
-        $projects = Mage::getModel('tasks/projects')->getCollection()->getProjectNames();
+            $projects = Mage::getModel('tasks/projects')->getCollection()->getProjectNames();
         }
+        if(Mage::helper('core')->isModuleEnabled('Wao_Statuses')){
+            $statuses = Mage::getModel('statuses/status')->getCollection();
+            echo "<pre>";
+            //var_dump($statuses);
+            echo "</pre>";
+        }
+        
        $form = new Varien_Data_Form();
        $this->setForm($form);
        $fieldset = $form->addFieldset('tasks_form', array('legend'=>'Описание задания'));
@@ -47,6 +49,8 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
                           'required' => true,
                           'name' => 'description',
                     ));
+        
+       
         if(Mage::registry('is_new')){
             $dateFormatIso = "dd.MM.yyyy 00:00:00";
         } else {
@@ -75,15 +79,15 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
             'format'       => $dateFormatIso
         ));
         
-        if(Mage::helper('core')->isModuleEnabled('Wao_Status') ){
+        if(Mage::helper('core')->isModuleEnabled('Wao_Statuses') ){
             $fieldset->addField('status', 'select', array(
                 'label'     => __('Status'),
                 'title'     => __('Status'),
                 'name'      => 'status',
                 'required' => true,
                 'values'    => array(
-                    'В разработке' => 'В разработке',
-                    'Окончено' => 'Окончено',
+                    'В разработкеee' => 'В разработке',
+                    'Оконченоeeее' => 'Окончено',
                 )));
         }
         
@@ -101,7 +105,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
  {
     $tasks_data = Mage::registry('tasks_data')->getData();
     if(Mage::helper('core')->isModuleEnabled('Wao_Project')){
-        $projectData = Mage::getModel('tasks/projects')->getCollection()->getProjectData($tasks_data['id']);
+        $projectData = Mage::getModel('tasks/projects')->getCollection()->getProjectId($tasks_data['id']);
     }
     $developers = Mage::getModel('tasks/developers')->getCollection()->getUsers($tasks_data['id']);
     $data = $tasks_data;

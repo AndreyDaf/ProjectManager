@@ -11,7 +11,8 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
    }
    protected function _prepareCollection()
    {
-      $collection = Mage::getModel('tasks/tasks')->getCollection();
+      $collection = Mage::getModel('tasks/tasks')->getCollection();//->addFieldToFilter('id',);
+      //$tasksForUser = Mage::getModel('tasks/developers')->getCollection()->getTasksForUser();
       $this->setCollection($collection);
       return parent::_prepareCollection();
     }
@@ -45,7 +46,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
                    'type'      => 'datetime'
               ));
         
-        if(Mage::helper('core')->isModuleEnabled('Wao_Status') ){
+        if(Mage::helper('core')->isModuleEnabled('Wao_Statuses') ){
         $this->addColumn('status',
                array(
                     'header' => __('Status'),
@@ -54,7 +55,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
                    'width' => '100px',
               ));
         }
-        
+        if(Mage::helper('tasks')->getUserRole() != 3){
         $this->addColumn('action', array(
             'header' => __('Action'),
             'width' => '50px',
@@ -80,7 +81,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
             'sortable' => false,
             'index' => 'id',
         ));
-       
+        }
          return parent::_prepareColumns();
     }
     public function getRowUrl($row)

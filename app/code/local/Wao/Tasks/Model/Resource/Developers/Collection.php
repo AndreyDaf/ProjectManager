@@ -33,4 +33,21 @@ class Wao_Tasks_Model_Resource_Developers_Collection extends Mage_Core_Model_Res
         return $taskId;
        
     }
+    
+    public function getTasksForUser(){
+        $id_user = Mage::getSingleton('admin/session')->getUser()->getId();
+        $tasks = array();
+        $select= $this->getConnection()->select()->from("wao_developers")
+                ->where('id_user = ?', $id_user)->where('active = ?', 0);
+       
+        $result = $this->getConnection()->fetchAll($select);
+        foreach($result as $item){
+            $id = $item['id'];
+            $tasks[$id] = $item['id_task'];
+        }
+        //$data = $result[0]['id_project'];
+       
+        
+        return $tasks;
+    }
 }

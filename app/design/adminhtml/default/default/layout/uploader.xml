@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout>
+<!--    <uploader_adminhtml_index_index>
+        <reference name="content">
+            <block type="adminhtml/template" template="importexport/import/form/before.phtml" name="import.form.before" alias="form_before"/>
+            <block type="importexport/adminhtml_import_edit" name="import.form.container"/>
+            <block type="adminhtml/template" template="importexport/import/form/after.phtml" name="import.form.after" alias="form_after"/>
+        </reference>
+    </uploader_adminhtml_index_index>-->
+    <uploader_adminhtml_index_validate>
+        <block type="uploader/adminhtml_frame_result" template="importexport/import/frame/result.phtml" name="uploader.frame.result" alias="uploader_frame_result" output="toHtml"/>
+    </uploader_adminhtml_index_validate>
+    <adminhtml_import_start>
+        <block type="importexport/adminhtml_import_frame_result" template="importexport/import/frame/result.phtml" name="import.frame.result" alias="import_frame_result" output="toHtml"/>
+    </adminhtml_import_start>
+    <adminhtml_import_busy>
+        <reference name="content">
+            <block type="core/template" template="importexport/busy.phtml" name="busy" alias="busy"/>
+        </reference>
+    </adminhtml_import_busy>
+</layout>

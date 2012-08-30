@@ -3,6 +3,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Fo
    
     public function __construct()
    {
+        $id = $this->getRequest()->getParam('id');
         parent::__construct();
         $this->_objectId = 'id';
 
@@ -12,6 +13,18 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Fo
 
         $this->_updateButton('save', 'label',__('Save task'));
         $this->_updateButton('delete', 'label', __('Delete task'));
+       
+        if(Mage::helper('tasks')->getUserRole() == 3){
+         $this->_removeButton('save');
+         $this->_removeButton('delete');
+         $this->_removeButton('reset');
+          $this->_addButton('submit', array(
+            'label'     => __('Submit'),//
+            'onclick'   => 'setLocation(\'' . $this->getUrl('*/*/submit/',array('id'=>$id))  . '\')',
+        ));
+          $this->_updateButton('back', 'onclick', 'setLocation(\'' . $_SERVER['HTTP_REFERER'] .'\')');
+        
+        }
        
     }
 

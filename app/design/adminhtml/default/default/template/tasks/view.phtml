@@ -1,0 +1,53 @@
+<?php $data =  $this->getTasksData();?>
+
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend">Описание задания</h4>
+    <div class="form-buttons"></div>
+</div>
+    <div class="fieldset " id="tasks_form">
+    <div class="hor-scroll">
+<table cellspacing="0" class="form-list">
+<tbody>
+<tr>
+    <td class="label"><?=__('Project name')?></td>
+    <td class="value">
+        <p><?=$data['project_name']?></p>
+    </td>
+</tr>
+<tr>
+    <td class="label"><?=__('Title')?></td>
+    <td class="value">
+        <p><?=$data['title']?></p>
+    </td>
+</tr>
+<tr>
+    <td class="label"><?=__('Description')?></td>
+    <td class="value">
+        <p><?=$data['description']?></p>
+    </td>
+</tr>
+<tr>
+    <td class="label"><?=__('Start date')?></td>
+    <td class="value">
+        <p><?=$data['start_date']?></p>
+    </td>
+</tr>
+<tr>
+    <td class="label"><?=__('End date')?></td>
+    <td class="value">
+        <p><?=$data['end_date']?></p>
+    </td>
+</tr>
+<tr>
+    <td class="label"><?=__('Status')?></td>
+    <td class="value">
+        <p><?=$data['status']?></p>
+    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+                    

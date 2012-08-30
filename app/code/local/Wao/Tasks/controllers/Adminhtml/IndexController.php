@@ -50,7 +50,14 @@
        }
        public function newAction()
        {
-          $this->_forward('edit');
+           //$test = Mage::getModel('tasks/tasks')->getCollection()->addFieldToFilter('id',array(1));
+           
+           
+           //echo "<pre>";
+           //print_r($tasks);
+           //Reflection::export(new ReflectionClass('Mage_Admin_Model_Session'));
+          //die;
+           $this->_forward('edit');
        }
        public function saveAction()
        {
@@ -59,7 +66,10 @@
            try {
              
                  $postData = $this->getRequest()->getPost();
-                 
+//                 header('Content-Type: text/html;charset=UTF-8');
+//                 echo "<pre>";
+//                 var_dump($postData); die;
+//                 echo "</pre>";
                  $project_id = $postData['project_id'];
                  $developersData = $postData['developers'];
                  unset($postData['project_id']);
@@ -153,12 +163,43 @@
             $this->_redirect('*/*/');
        }
        
-       public function tasksAction(){
-            $this->loadLayout();
-            $this->_addContent($this->getLayout()->createBlock('tasks/adminhtml_tasks'));
-            $this->renderLayout();
-            
-       }
+       public function submitAction()
+       {
+           $id = $this->getRequest()->getParam('id');
+         if ($id) {
+             
+           try {
+             
+                 $taskModel = Mage::getModel('tasks/tasks');
+                 if(!Mage::helper('tasks')->isModuleEnabled('Wao_Statuses')){
+                     $statuses = Mage::getModel('statuses/status')->getCollection()->statusesToArray();
+                     
+                 }
+                 
+                 $taskModel->setStatus('Отправлено на проверку')
+                    ->setId($id)->save();
+                 
+                 
+                 
+                 
+                 Mage::getSingleton('adminhtml/session')
+                               ->addSuccess('Задание отправлено на проверку');
+                 Mage::getSingleton('adminhtml/session')
+                                ->settestData(false);
+                 $this->_redirect('*/*/');
+                return;
+          } catch (Exception $e){
+                Mage::getSingleton('adminhtml/session')
+                                  ->addError($e->getMessage());
+               
+                $this->_redirect('*/*/edit',
+                            array('id' => $this->getRequest()
+                                                ->getParam('id')));
+                return;
+                }
+              }
+              $this->_redirect('*/*/');
+            }
    
 }
     
