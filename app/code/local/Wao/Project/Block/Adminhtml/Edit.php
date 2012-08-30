@@ -14,9 +14,9 @@ class Wao_Project_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_Form_
     }
  
     public function getHeaderText()
-    {
+    {   
         $project = Mage::registry('current_project');
-        if ($project->getId()) { 
+        if ($project->getId()) {
             return __("Edit Project '%s'", $this->escapeHtml($project->getName()));
         } else {
             return __("Add new Project");

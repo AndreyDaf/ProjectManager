@@ -12,8 +12,6 @@ class Wao_Project_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Ac
     
     public function newAction()
     {
-        Mage::register('new_project', 1);
-        
         $this->_title($this->__('Add new project'));
         $this->loadLayout();
         $this->_setActiveMenu('project');
@@ -22,10 +20,10 @@ class Wao_Project_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Ac
     
     public function editAction()
     {
+        Mage::register('new_project', 1);
+        
         $this->_title($this->__('Edit project'));
-        $this->loadLayout();
-        $this->_setActiveMenu('project');
-        $this->renderLayout();
+        $this->_forward('new');
     }
     
     public function deleteAction()
@@ -71,6 +69,22 @@ class Wao_Project_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Ac
         $this->getResponse()->setBody(
             $this->getLayout()->createBlock('project/adminhtml_projects_grid')->toHtml()
         );
+    }
+    
+    public function projectAction()
+    {
+        $this->_title($this->__('Current projects'));
+        
+        $this->loadLayout();
+        $this->_setActiveMenu('project');
+        
+        $this->_addContent($this->getLayout()
+                  ->createBlock('project/adminhtml_project'));
+        
+        $this->_addLeft($this->getLayout()
+                  ->createBlock('project/adminhtml_project_tabs', 'project.tabs'));
+        
+        $this->renderLayout();
     }
 
 }

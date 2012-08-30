@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <modules>
-        <Wao_Project>0.1.0</Wao_Project>
+        <Wao_Project>
+            <version>0.1.0</version>
+        </Wao_Project>
     </modules>
     
     <global>
+        <helpers>
+            <project>
+                <class>Wao_Project_Helper</class>
+            </project>
+        </helpers>
+        
         <blocks>
             <project>
                 <class>Wao_Project_Block</class>
             </project>
         </blocks>
+        
         <models>
             <project>
                 <class>Wao_Project_Model</class>
@@ -24,18 +33,31 @@
                 </entities>
             </project_mysql4>
         </models>
+        
         <resources>
+            <project_setup>
+                <setup>
+                    <module>Wao_Project</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </project_setup>
+
+            
             <project_write>
                 <connection>
                     <use>core_write</use>
                 </connection>
             </project_write>
+            
             <project_read>
                 <connection>
                     <use>core_read</use>
                 </connection>
             </project_read>
         </resources>
+        
     </global>
     
     <admin>
@@ -58,6 +80,19 @@
                 <action>project/adminhtml_index</action>
             </project>
         </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <project translate="title" module="adminhtml">
+                            <title>Project</title>
+                            <sort_order>100</sort_order>
+                        </project>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
         
         <layout>
             <updates>

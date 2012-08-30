@@ -18,6 +18,7 @@ class Wao_Project_Block_Adminhtml_Projects_Grid extends Mage_Adminhtml_Block_Wid
     }
 
     protected function _prepareColumns() {
+        
         $this->addColumn('id', array(
             'header' => __('Id'),
             'align' => 'right',
@@ -64,53 +65,59 @@ class Wao_Project_Block_Adminhtml_Projects_Grid extends Mage_Adminhtml_Block_Wid
             'escape' => true,
         ));
 
-        if (Mage::helper('core')->isModuleEnabled('Wao_Status')) {
+        if (Mage::helper('core')->isModuleEnabled('Wao_Statuses') &&
+            Mage::helper('core')->isModuleOutputEnabled('Wao_Statuses')) {
 
+            $allStatuses = array();
+            $statuses = Mage::getModel('statuses/status')->getCollection()->getData();
+            
+            foreach ($statuses as $status) {
+                
+                $allStatuses[$status['status']] = $status['status'];
+            }
+            
             $this->addColumn('status', array(
                 'header' => __('Status'),
                 'align' => 'left',
                 'filter_index' => 'status',
                 'index' => 'status',
-                'type' => 'text',
-                //'options' => $profile->getAllStates(),
+                'type' => 'options',
+                'options' => $allStatuses,
                 'truncate' => 100,
                 'escape' => true,
             ));
         }
-
-        $this->addColumn('action', array(
-            'header' => __('Action'),
-            'width' => '50px',
-            'type' => 'action',
-            'getter' => 'getId',
-            'actions' => array(
-                array(
-                    'caption' => __('Edit'),
-                    'url' => array(
-                        'base' => '*/*/edit',
-                    ),
-                    'field' => 'id'
-                ),
-                array(
-                    'caption' => __('Delete'),
-                    'url' => array(
-                        'base' => '*/*/delete',
-                    ),
-                    'field' => 'id'
-                )
-            ),
-            'filter' => false,
-            'sortable' => false,
-            'index' => 'id',
-        ));
         
+        $roleId = $this->helper('project/data')->getUserRoleId();
+        
+        if ($roleId == 1 || $roleId == 3) {
+
+            $this->addColumn('action', array(
+                'header' => __('Action'),
+                'width' => '50px',
+                'type' => 'action',
+                'getter' => 'getId',
+                'actions' => array(
+                    array(
+                        'caption' => __('Edit'),
+                        'url' => array(
+                            'base' => '*/*/edit',
+                        ),
+                        'field' => 'id'
+                    )
+                ),
+                'filter' => false,
+                'sortable' => false,
+                'index' => 'id',
+            ));
+        }
 
         return parent::_prepareColumns();
     }
 
     public function getRowUrl($quote) {
-        return $this->getUrl('*/*/index', array(
-                    'id' => $quote->getId(),
+        return $this->getUrl('*/*/project', array(
+                    'pr' => $quote->getId(),
                 ));
     }
 

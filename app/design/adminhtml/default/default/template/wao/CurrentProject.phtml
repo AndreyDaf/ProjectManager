@@ -1,0 +1,24 @@
+<div class="project_block" style="padding-bottom: 30px;">
+    <h1><?php echo $this->getProject()->getName() ?></h1>
+
+    <div style="float: left;">
+        <div>
+            <?php
+                $startDate = $this->getProject()->getStart_date();
+                echo Mage::getModel('core/date')->date('d.m.Y H:i:s', strtotime($startDate));
+            ?>
+        </div>
+        <div>
+            <?php
+                $endDate = $this->getProject()->getEnd_date();
+                echo Mage::getModel('core/date')->date('d.m.Y H:i:s', strtotime($endDate));
+            ?>
+        </div>
+    </div>
+    <div style="float: right;"><?php echo $this->getProject()->getStatus() ?></div>
+    <div style="clear: both;"></div>
+
+    <div style="padding: 10px 0;"><?php echo $this->getProject()->getDescription() ?></div>
+
+    <div><?php echo ($this->getProject()->getRepository()) ? __("Repository: ") . $this->getProject()->getRepository() : ""; ?></div>
+</div>

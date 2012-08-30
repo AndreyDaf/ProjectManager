@@ -31,108 +31,41 @@
  * @package    Mage_Captcha
  * @author     Magento Core Team <core@magentocommerce.com>
  */
-class Mage_Captcha_Helper_Data extends Mage_Core_Helper_Abstract
+class Wao_Project_Helper_Data extends Mage_Core_Helper_Abstract
 {
     /**
-     * Used for "name" attribute of captcha's input field
-     */
-    const INPUT_NAME_FIELD_VALUE = 'captcha';
-
-    /**
-     * Always show captcha
-     */
-    const MODE_ALWAYS     = 'always';
-
-    /**
-     * Show captcha only after certain number of unsuccessful attempts
-     */
-    const MODE_AFTER_FAIL = 'after_fail';
-
-    /**
-     * Captcha fonts path
-     */
-    const XML_PATH_CAPTCHA_FONTS = 'default/captcha/fonts';
-
-    /**
-     * List uses Models of Captcha
-     * @var array
-     */
-    protected $_captcha = array();
-
-    /**
-     * Get Captcha
+     * Get id user which logged in
      *
-     * @param string $formId
-     * @return Mage_Captcha_Model_Interface
+     * @return int
      */
-    public function getCaptcha($formId)
+    public function getCurrentUserId()
     {
-        if (!array_key_exists($formId, $this->_captcha)) {
-            $type = $this->getConfigNode('type');
-            $this->_captcha[$formId] = Mage::getModel('captcha/' . $type, array('formId' => $formId));
-        }
-        return $this->_captcha[$formId];
+        $userSession = Mage::getSingleton('admin/session');
+        
+        return $userSession->getUser()->getId();
     }
-
+    
     /**
-     * Returns value of the node with respect to current area (frontend or backend)
+     * Get id role user which logged in
      *
-     * @param string $id The last part of XML_PATH_$area_CAPTCHA_ constant (case insensitive)
-     * @param Mage_Core_Model_Store $store
-     * @return Mage_Core_Model_Config_Element
+     * @return int
      */
-    public function getConfigNode($id, $store = null)
+    public function getUserRoleId()
     {
-        $areaCode = Mage::app()->getStore($store)->isAdmin() ? 'admin' : 'customer';
-        return Mage::getStoreConfig( $areaCode . '/captcha/' . $id, $store);
+        $userSession = Mage::getSingleton('admin/session');
+        
+        return $userSession->getUser()->getRole()->getRoleId();
     }
-
+    
     /**
-     * Get list of available fonts
-     * Return format:
-     * [['arial'] => ['label' => 'Arial', 'path' => '/www/magento/fonts/arial.ttf']]
+     * Get name role user which logged in
      *
-     * @return array
-     */
-    public function getFonts()
-    {
-        $node = Mage::getConfig()->getNode(Mage_Captcha_Helper_Data::XML_PATH_CAPTCHA_FONTS);
-        $fonts = array();
-        if ($node) {
-            foreach ($node->children() as $fontName => $fontNode) {
-               $fonts[$fontName] = array(
-                   'label' => (string)$fontNode->label,
-                   'path' => Mage::getBaseDir('base') . DS . $fontNode->path
-               );
-            }
-        }
-        return $fonts;
-    }
-
-    /**
-     * Get captcha image directory
-     *
-     * @param mixed $website
      * @return string
      */
-    public function getImgDir($website = null)
+    public function getUserRoleName()
     {
-        $websiteCode = Mage::app()->getWebsite($website)->getCode();
-        $captchaDir = Mage::getBaseDir('media') . DS . 'captcha' . DS . $websiteCode . DS;
-        $io = new Varien_Io_File();
-        $io->checkAndCreateFolder($captchaDir, 0755);
-        return $captchaDir;
-    }
-
-    /**
-     * Get captcha image base URL
-     *
-     * @param mixed $website
-     * @return string
-     */
-    public function getImgUrl($website = null)
-    {
-        $websiteCode = Mage::app()->getWebsite($website)->getCode();
-        return Mage::getBaseUrl('media') . 'captcha' . '/' . $websiteCode . '/';
+        $userSession = Mage::getSingleton('admin/session');
+        
+        return $userSession->getUser()->getRole()->getRoleName();
     }
 }

@@ -10,11 +10,11 @@ class Wao_Project_Block_Adminhtml_Edit_Form extends Mage_Adminhtml_Block_Widget_
                 ));
 
         if (Mage::registry('new_project')) {
-            $dateFormatIso = 'dd.MM.yyyy 00:00:00';
-        } else {
             $dateFormatIso = 'dd.MM.yyyy HH:mm:ss';
+        } else {
+            $dateFormatIso = 'dd.MM.yyyy 00:00:00';
         }
-
+        
         if ($project->getId()) {
             $fieldset->addField('id', 'hidden', array(
                 'name' => 'id',
@@ -64,13 +64,23 @@ class Wao_Project_Block_Adminhtml_Edit_Form extends Mage_Adminhtml_Block_Widget_
             'required' => true,
         ));
 
-        if (Mage::helper('core')->isModuleEnabled('Wao_Status')) {
+        if (Mage::helper('core')->isModuleEnabled('Wao_Statuses') &&
+            Mage::helper('core')->isModuleOutputEnabled('Wao_Statuses')) {
 
-            $fieldset->addField('status', 'text', array(
+            $allStatuses = array();
+            $statuses = Mage::getModel('statuses/status')->getCollection()->getData();
+            
+            foreach ($statuses as $status) {
+                
+                $allStatuses[$status['status']] = $status['status'];
+            }
+            
+            $fieldset->addField('status', 'select', array(
                 'name' => 'status',
                 'label' => __('Status'),
                 'style' => 'width: 120px;',
                 'maxlength' => '100',
+                'options' => $allStatuses,
                 'required' => true,
             ));
         }
