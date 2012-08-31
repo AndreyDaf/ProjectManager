@@ -1,0 +1,49 @@
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 9: parser error : Opening and ending tag mismatch: Wao_qwerrqe line 8 and depends  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string():             </depends>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string():                       ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 10: parser error : Opening and ending tag mismatch: depends line 7 and Wao_Project  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string():         </Wao_Project>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string():                       ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 11: parser error : Opening and ending tag mismatch: Wao_Project line 4 and modules  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string():     </modules>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string():               ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 12: parser error : Opening and ending tag mismatch: modules line 3 and config  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string(): </config>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string():          ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 12: parser error : Premature end of data in tag config line 2  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string(): </config>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:24:56+00:00 ERR (3): Warning: simplexml_load_string():          ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 9: parser error : Opening and ending tag mismatch: Wao_qwerrqe line 8 and depends  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string():             </depends>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string():                       ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 10: parser error : Opening and ending tag mismatch: depends line 7 and Wao_Project  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string():         </Wao_Project>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string():                       ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 11: parser error : Opening and ending tag mismatch: Wao_Project line 4 and modules  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string():     </modules>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string():               ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 12: parser error : Opening and ending tag mismatch: modules line 3 and config  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string(): </config>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string():          ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 12: parser error : Premature end of data in tag config line 2  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string(): </config>  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:23+00:00 ERR (3): Warning: simplexml_load_string():          ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T08:25:48+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T08:25:51+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T08:25:52+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T08:25:55+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T08:25:57+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T10:14:51+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T10:15:06+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T10:41:32+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T10:42:40+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T10:43:31+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T10:43:39+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T10:43:42+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T10:43:46+00:00 ERR (3): Notice: Trying to get property of non-object  in /home/andrey/work/server/manager/www/app/code/core/Mage/Core/Model/Config.php on line 1239
+2012-08-31T11:05:02+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 2: parser error : Start tag expected, '<' not found  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T11:05:02+00:00 ERR (3): Warning: simplexml_load_string():   in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T11:05:02+00:00 ERR (3): Warning: simplexml_load_string(): ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T11:05:09+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 2: parser error : Start tag expected, '<' not found  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T11:05:09+00:00 ERR (3): Warning: simplexml_load_string():   in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510
+2012-08-31T11:05:09+00:00 ERR (3): Warning: simplexml_load_string(): ^  in /home/andrey/work/server/manager/www/lib/Varien/Simplexml/Config.php on line 510

@@ -16,6 +16,8 @@ class Wao_Project_Block_Adminhtml_Project_Tabs extends Mage_Adminhtml_Block_Widg
                     ->createBlock('project/adminhtml_project_tab_project', 'project.current')
                     ->toHtml()
         ));
+        
+        $this->setActiveTab('currentProject');
 
         return parent::_beforeToHtml();
     }

@@ -17,4 +17,14 @@
         </reference>
     </project_adminhtml_index_edit>
     
+    <project_adminhtml_index_project>
+        <reference name="left">
+            <block type="project/adminhtml_project_tabs" name="project.tabs" />
+        </reference>
+        
+        <reference name="content">
+            <block type="project/adminhtml_project" name="project.buttons" />
+        </reference>
+    </project_adminhtml_index_project>
+    
 </layout>

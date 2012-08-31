@@ -78,12 +78,6 @@ class Wao_Project_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Ac
         $this->loadLayout();
         $this->_setActiveMenu('project');
         
-        $this->_addContent($this->getLayout()
-                  ->createBlock('project/adminhtml_project'));
-        
-        $this->_addLeft($this->getLayout()
-                  ->createBlock('project/adminhtml_project_tabs', 'project.tabs'));
-        
         $this->renderLayout();
     }
 
