@@ -22,22 +22,24 @@
 	<!-- To add a tab on edit product page -->
 	<project_adminhtml_index_project>
 		<reference name="project.tabs">
-			<action method="addTab">
-				<name>custom_tab</name>
+			<action method="addTabAfter">
+				<name>comment_tab</name>
 				<block template="comments/content.phtml">comments/adminhtml_config</block>
+                                                                        <after>currentProject</after>
 			</action>
 		</reference>
 	</project_adminhtml_index_project>
 	<!-- To add a tab on edit product page -->
 
-	<adminhtml_customer_edit>
-		<reference name="customer_edit_tabs">
-			<action method="addTab">
-				<name>custom_tab</name>
+	<tasks_adminhtml_index_edit>
+		<reference name="tasks_edit_tabs">
+			<action method="addTabAfter">
+				<name>comment_tab</name>
 				<block template="comments/content.phtml">comments/adminhtml_config</block>
+                                                                        <after>form_section</after>
 			</action>
 		</reference>
-	</adminhtml_customer_edit>
+	</tasks_adminhtml_index_edit>
 
 
 
