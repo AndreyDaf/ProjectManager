@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+
+	<default>
+        <reference name="head">
+            <!-- <action method="addItem">
+                <type>skin_js</type>
+                <name>js/comments.js</name>
+            </action> -->
+
+            <!-- <action method="addItem">
+                <type>skin_js</type>
+                <name>js/jquery-1.7.2.min.js</name>
+            </action> -->
+
+            <action method="addCss">
+                <stylesheet>comments.css</stylesheet>
+            </action>
+        </reference>
+    </default>
+
+	<!-- To add a tab on edit product page -->
+	<project_adminhtml_index_project>
+		<reference name="project.tabs">
+			<action method="addTabAfter">
+				<name>comment_tab</name>
+				<block template="comments/content.phtml">comments/adminhtml_config</block>
+                                                                        <after>tasks_tab</after>
+			</action>
+		</reference>
+	</project_adminhtml_index_project>
+	<!-- To add a tab on edit product page -->
+
+	<tasks_adminhtml_index_edit>
+		<reference name="tasks_edit_tabs">
+			<action method="addTabAfter">
+				<name>comment_tab</name>
+				<block template="comments/content.phtml">comments/adminhtml_config</block>
+                                                                        <after>currenTasks</after>
+			</action>
+		</reference>
+	</tasks_adminhtml_index_edit>
+
+
+
+
+</layout>
