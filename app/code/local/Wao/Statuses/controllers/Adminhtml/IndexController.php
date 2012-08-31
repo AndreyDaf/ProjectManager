@@ -8,6 +8,7 @@ class Wao_Statuses_Adminhtml_IndexController extends Mage_Adminhtml_Controller_a
         $this->renderLayout();
     }
 
+
     public function editAction() {
         $id = $this->getRequest()->getParam('id', null);
         $model = Mage::getModel('statuses/status');

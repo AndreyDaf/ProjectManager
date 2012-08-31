@@ -31,15 +31,6 @@ class Wao_Statuses_Block_Adminhtml_Statuses_Edit_Form extends Mage_Adminhtml_Blo
         $fieldset = $form->addFieldset('example_form', array(
              'legend' =>Mage::helper('statuses')->__('Example Information')
         ));
-        
-        // <-- Editing fields -->
-        
-//        $fieldset->addField('id', 'text', array(
-//             'label'     => Mage::helper('statuses')->__('id'),
-//             'class'     => 'required-entry',
-//             'required'  => true,
-//             'name'      => 'id'
-//        ));
  
         $fieldset->addField('status', 'text', array(
              'label'     => Mage::helper('statuses')->__('Status'),

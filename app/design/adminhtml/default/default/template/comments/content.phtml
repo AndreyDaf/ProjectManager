@@ -1,0 +1,125 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend">All Comments</h4>
+    </div>
+    <div id="group_fields4" class="fieldset fieldset-wide">
+        <?php
+        if (Mage::getSingleton('admin/session')->isLoggedIn()) 
+        {
+            $name = Mage::getSingleton('admin/session')->getUser()->getName();
+        }
+
+        if ($this->getRequest()->getModuleName()=="project")
+            $project = $this->getRequest()->getParam('id');       
+        if ($this->getRequest()->getModuleName()=="tasks")
+            $task = $this->getRequest()->getParam('id');
+
+        $comments = Mage::getModel('comments/post')->getCollection();
+
+        if ($project != null || $project != 0)
+        {
+            //$comments = Mage::getModel('comments/post')->getCollection();
+            $comments = $comments->addFieldToFilter('project', $project);            
+            if($task != null || $task != 0)
+            {
+                $comments = $comments->addFieldToFilter('task',$task);
+            }
+        }
+
+        foreach ($comments as $item): ?>
+            <table id="comment_list">
+                        <tr>
+                            <td collspan='2 '><b><?=$item['author']?></b></td>
+                        </tr>
+                        <tr>
+                            <td collspan='2'><?=$item['comment']?></td>
+                        </tr>
+                        <tr>
+                            <td><?=$item['date']?></td>
+                            <td>
+                
+                            <?php if ($name == $item['author']): ?>
+                                <div id="edit_panel">
+                                    <a href="" id="edit_link">Edit</a> 
+                                    &nbsp 
+                                    <a href="<?php echo $this->getUrl('comments/adminhtml_comments/delete/id/'.$item['id']);?>">Delete</a></div>
+                            <? endif; ?>
+                     
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                
+        <? endforeach; ?>
+
+    </div>
+
+    <br />
+    
+    <form id="post_form" method="POST" action="<?php echo $this->getUrl('comments/adminhtml_comments/add/');?>">
+       
+        <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
+        <input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
+        <?php $key = $this->getRequest()->getParam('key'); ?>
+        <input name="Project_id" type="hidden" value="<?php echo $project; ?>" />
+        <input name="Task_id" type="hidden" value="<?php echo $task; ?>" />   
+        
+        <table border = "0">
+            <tr><td>Добавить комментарий:</td><td></td></tr>
+            <tr><td>Автор:</td><td><input type="text" name="Author" value="<?php echo($name); ?>" readonly /></td></tr>
+            <tr><td>Комментарий:</td><td><textarea rows="8" cols="85%" name="Comment"></textarea></td></tr>
+        </table>
+        <input type="submit" id="submit" value="Отправить" />
+    </form>
+
+    <div id="edit_block">
+        <a href="#">Закрыть</a>
+        <br />
+        <form id="editform" method="POST" action="">
+            <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
+            <input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
+            <input name="Project_id" type="hidden" value="<?php echo $project; ?>" />
+            <input name="Task_id" type="hidden" value="<?php echo $task; ?>" /> 
+            <input type="hidden" name="Author" value="<?php echo($name); ?>" />
+            Комментарий: 
+            <br />
+            <textarea rows="8" cols="85%" name="Comment"></textarea>
+            <br />
+            <input type="submit" id="save" value="Сохранить" />
+        </form>
+    </div>
+    
+</div>
+
+<div id="mask"></div>
+
+<script language="JavaScript" type="text/javascript">
+    
+var $j=jQuery.noConflict();
+   
+$j(document).ready(function() {
+    
+    document.getElementById('edit_block').style.display='none';
+    document.getElementById('mask').style.display='none';
+
+    $j('#mask').click(function () {
+        hide_edit();
+    });
+
+    $j('#edit_link').click(function () {
+        show_edit();
+    });
+
+
+    function hide_edit () {
+        document.getElementById('edit_block').style.display='none';
+        document.getElementById('mask').style.display='none';
+    }
+
+    function show_edit () {
+        document.getElementById('edit_block').style.display='fixed';
+        document.getElementById('mask').style.display='fixed';
+    }
+
+});
+</script>
