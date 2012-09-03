@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <modules>
-        <Wao_Uploader>
-            <active>true</active>
-            <codePool>local</codePool>
-        </Wao_Uploader>
-    </modules>
-</config>

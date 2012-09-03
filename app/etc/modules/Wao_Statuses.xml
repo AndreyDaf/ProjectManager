@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <modules>
-        <Wao_Statuses>
-            <active>true</active>
-            <codePool>local</codePool>
-        </Wao_Statuses>
-    </modules>
-</config>
