@@ -3,7 +3,7 @@
      
     public function indexAction(){
           $this->loadLayout();
-          $this->_addContent($this->getLayout()->createBlock('tasks/adminhtml_grid'));
+          //$this->_addContent($this->getLayout()->createBlock('tasks/adminhtml_grid'));
           $this->renderLayout();
     }
     
@@ -16,7 +16,13 @@
     
       public function editAction()
       {
-         
+        $request = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        $referer = $_SERVER['HTTP_REFERER'];
+         if($request != $referer){
+              Mage::getSingleton('core/session')->setMyRequest(array('url'=> $_SERVER['HTTP_REFERER']));
+          }
+        
+          
            $id = $this->getRequest()->getParam('id');
            $modelTasks = Mage::getModel('tasks/tasks')->load($id);
             //var_dump($testModel); 
@@ -34,11 +40,11 @@
              //$this->_addBreadcrumb('test Manager', 'test Manager');
              //$this->_addBreadcrumb('Test Description', 'Test Description');
              $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
-             $this->_addContent($this->getLayout()
-                  ->createBlock('tasks/adminhtml_task_edit'))
-                  ->_addLeft($this->getLayout()
-                  ->createBlock('tasks/adminhtml_task_edit_tabs')
-              );
+//             $this->_addContent($this->getLayout()
+//                  ->createBlock('tasks/adminhtml_task_edit'))
+//                  ->_addLeft($this->getLayout()
+//                  ->createBlock('tasks/adminhtml_task_edit_tabs')
+//              );
              $this->renderLayout();
            }
            else
@@ -61,6 +67,7 @@
        }
        public function saveAction()
        {
+           
          if ($this->getRequest()->getPost())
          {
            try {
@@ -186,7 +193,8 @@
                                ->addSuccess('Задание отправлено на проверку');
                  Mage::getSingleton('adminhtml/session')
                                 ->settestData(false);
-                 $this->_redirect('*/*/');
+                 //$this->_redirect('*/*/');
+                 $this     ->_redirectUrl($_SERVER['HTTP_REFERER']);
                 return;
           } catch (Exception $e){
                 Mage::getSingleton('adminhtml/session')

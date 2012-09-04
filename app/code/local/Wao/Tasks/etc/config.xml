@@ -28,14 +28,10 @@
             <resources>
                 <admin>
                     <children>
-                        <manage  module="adminhtml">
-                            <title>Редактор заданий</title>
+                        <tasks  module="adminhtml">
+                            <title>Задания</title>
                             <sort_order>-1</sort_order>
-                        </manage>
-                        <mytasks  module="adminhtml">
-                            <title>Мои задания</title>
-                            <sort_order>-2</sort_order>
-                        </mytasks>
+                        </tasks>
                     </children>
                 </admin>
             </resources>
@@ -52,7 +48,7 @@
         <layout>
             <updates>
                 <tasks>
-                    <file>tasks.xml</file>
+                    <file>Wao/Tasks.xml</file>
                 </tasks>
             </updates>
         </layout>

@@ -16,15 +16,19 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tabs extends Mage_Adminhtml_Block_Widg
       protected function _beforeToHtml()
       {
           if(Mage::helper('tasks')->getUserRole() == 3){
+            $block = $this->blockManager;
+         } else {
+             $block = $this->blockUser;
+             
+             }
          
-              $block = $this->blockManager;
-         } else {$block = $this->blockUser;}
-          $this->addTab('form_section', array(
+          $this->addTab('currentTasks', array(
                    'label' => __('General'),
                    'title' => __('General'),
                    'content' => $this->getLayout()
                   ->createBlock($block)->toHtml()
          ));
+          $this->setActiveTab('currentTasks');
           
          return parent::_beforeToHtml();
     }

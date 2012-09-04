@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<layout>
+
+
+
+<tasks_adminhtml_index_index>
+ <reference name="content">
+   <block type="tasks/adminhtml_grid" name="tasks_grid" />
+ </reference>
+</tasks_adminhtml_index_index>
+
+<tasks_adminhtml_index_edit>
+ <reference name="content">
+   <block type="tasks/adminhtml_task_edit" name="tasks_edit" />
+ </reference>
+ <reference name="left">
+   <block type="tasks/adminhtml_task_edit_tabs" name="tasks_edit_tabs" />
+ </reference>
+</tasks_adminhtml_index_edit>
+
+<project_adminhtml_index_project>
+ <reference name="project.tabs">
+  <action method="addTabAfter">
+   <name>tasks_tab</name>
+   <block>tasks/adminhtml_config</block>
+   <after>currentProject</after>
+  </action>
+ </reference>
+</project_adminhtml_index_project>
+
+</layout>

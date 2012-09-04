@@ -36,14 +36,16 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
                     'header' => __('Start date'),
                     'align' =>'left',
                     'index' => 'start_date',
-                    'type'      => 'datetime'
+                    'type'      => 'datetime',
+                    'width' => '180px'
               ));
         $this->addColumn('end_date',
                array(
                     'header' => __('End date'),
                     'align' =>'left',
                     'index' => 'end_date',
-                   'type'      => 'datetime'
+                    'type'      => 'datetime',
+                    'width' => '180px'
               ));
         
         if(Mage::helper('core')->isModuleEnabled('Wao_Statuses') ){
@@ -52,10 +54,10 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
                     'header' => __('Status'),
                     'align' =>'left',
                     'index' => 'status',
-                   'width' => '100px',
+                    'width' => '180px',
               ));
         }
-        if(Mage::helper('tasks')->getUserRole() != 3){
+        if(Mage::helper('tasks')->getUserRole() == 3){
         $this->addColumn('action', array(
             'header' => __('Action'),
             'width' => '50px',
@@ -66,13 +68,6 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
                     'caption' => __('Edit'),
                     'url' => array(
                         'base' => '*/*/edit',
-                    ),
-                    'field' => 'id'
-                ),
-                array(
-                    'caption' => __('Delete'),
-                    'url' => array(
-                        'base' => '*/*/delete',
                     ),
                     'field' => 'id'
                 )

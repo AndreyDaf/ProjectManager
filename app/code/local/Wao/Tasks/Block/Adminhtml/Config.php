@@ -8,6 +8,7 @@ class Wao_Tasks_Block_Adminhtml_Config extends Mage_Adminhtml_Block_Widget_Grid_
         $this->_headerText = __('View task');
         parent::__construct();
         $this->_removeButton('add');
+        $this->setTemplate('tasks/container.phtml');
     }
 
     public function getTabLabel(){
