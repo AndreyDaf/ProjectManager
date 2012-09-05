@@ -3,15 +3,10 @@
 
 	<default>
         <reference name="head">
-            <!-- <action method="addItem">
+            <action method="addItem">
                 <type>skin_js</type>
                 <name>js/comments.js</name>
-            </action> -->
-
-            <!-- <action method="addItem">
-                <type>skin_js</type>
-                <name>js/jquery-1.7.2.min.js</name>
-            </action> -->
+            </action>
 
             <action method="addCss">
                 <stylesheet>comments.css</stylesheet>
@@ -25,7 +20,7 @@
 			<action method="addTabAfter">
 				<name>comment_tab</name>
 				<block template="comments/content.phtml">comments/adminhtml_config</block>
-                                                                        <after>currentProject</after>
+                                                                        <after>tasks_tab</after>
 			</action>
 		</reference>
 	</project_adminhtml_index_project>
@@ -36,7 +31,7 @@
 			<action method="addTabAfter">
 				<name>comment_tab</name>
 				<block template="comments/content.phtml">comments/adminhtml_config</block>
-                                                                        <after>currentTasks</after>
+                                                                        <after>currenTasks</after>
 			</action>
 		</reference>
 	</tasks_adminhtml_index_edit>

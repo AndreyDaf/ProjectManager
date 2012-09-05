@@ -30,14 +30,33 @@ class Wao_Comments_Adminhtml_CommentsController extends Mage_Adminhtml_Controlle
     $id         = $this->getRequest()->getParam('id');
     $comment    = Mage::getModel('comments/post');
     try 
-      {
-        $comment  ->setId($id)->delete();
-        $this     ->_redirectUrl($_SERVER['HTTP_REFERER']);
-      }
-    catch (Exception $e){
-        echo $e->getMessage();
-        $this     ->_redirectUrl($_SERVER['HTTP_REFERER']);
-}
+    {
+      $comment  ->setId($id)->delete();
+      $this     ->_redirectUrl($_SERVER['HTTP_REFERER']);
+    }
+    catch (Exception $e)
+    {
+      echo $e->getMessage();
+      $this     ->_redirectUrl($_SERVER['HTTP_REFERER']);
+    }
+  }
+
+  public function editAction()
+  {
+    $data       = $this->getRequest()->getPost();
+    $comment    = Mage::getModel('comments/post')->load($data['id']);
+
+    $comment    ->setAuthor($data['Author']);
+    $comment    ->setComment($data['Comment']);
+    $comment    ->setDate(date("Y-m-d H:i:s"));
+    $comment    ->setTask($data['Task_id']);
+    $comment    ->setProject($data['Project_id']);
+
+    $comment    ->setId($data['id'])->save();
+    $this       ->_redirectUrl($_SERVER['HTTP_REFERER']);
+
 
   }
+
+
 }

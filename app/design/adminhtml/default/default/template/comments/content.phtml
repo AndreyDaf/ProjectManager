@@ -32,7 +32,11 @@
                             <td collspan='2 '><b><?=$item['author']?></b></td>
                         </tr>
                         <tr>
-                            <td collspan='2'><?=$item['comment']?></td>
+                            <td collspan='2'>
+                                <div id="<?='comm_'.$item['id']?>">
+                                    <?=$item['comment']?>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td><?=$item['date']?></td>
@@ -40,7 +44,7 @@
                 
                             <?php if ($name == $item['author']): ?>
                                 <div id="edit_panel">
-                                    <a href="" id="edit_link">Edit</a> 
+                                    <a href="#" onclick="show_edit(<?=$item['id']?>);" id="edit_link">Edit</a> 
                                     &nbsp 
                                     <a href="<?php echo $this->getUrl('comments/adminhtml_comments/delete/id/'.$item['id']);?>">Delete</a></div>
                             <? endif; ?>
@@ -73,17 +77,18 @@
     </form>
 
     <div id="edit_block">
-        <a href="#">Закрыть</a>
+        <a href="javascript:hide_edit();">Закрыть</a>
         <br />
-        <form id="editform" method="POST" action="">
+        <form id="edit_form" method="POST" action="<?php echo $this->getUrl('comments/adminhtml_comments/edit/');?>">
             <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
             <input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
             <input name="Project_id" type="hidden" value="<?php echo $project; ?>" />
+            <input name="id" id='id' type="hidden" value="" />
             <input name="Task_id" type="hidden" value="<?php echo $task; ?>" /> 
             <input type="hidden" name="Author" value="<?php echo($name); ?>" />
             Комментарий: 
             <br />
-            <textarea rows="8" cols="85%" name="Comment"></textarea>
+            <textarea rows="8" cols="85%" id="Edit_comment" name="Comment"></textarea>
             <br />
             <input type="submit" id="save" value="Сохранить" />
         </form>
@@ -93,33 +98,3 @@
 
 <div id="mask"></div>
 
-<script language="JavaScript" type="text/javascript">
-    
-var $j=jQuery.noConflict();
-   
-$j(document).ready(function() {
-    
-    document.getElementById('edit_block').style.display='none';
-    document.getElementById('mask').style.display='none';
-
-    $j('#mask').click(function () {
-        hide_edit();
-    });
-
-    $j('#edit_link').click(function () {
-        show_edit();
-    });
-
-
-    function hide_edit () {
-        document.getElementById('edit_block').style.display='none';
-        document.getElementById('mask').style.display='none';
-    }
-
-    function show_edit () {
-        document.getElementById('edit_block').style.display='fixed';
-        document.getElementById('mask').style.display='fixed';
-    }
-
-});
-</script>
