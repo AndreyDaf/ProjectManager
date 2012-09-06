@@ -20,7 +20,7 @@
 			<action method="addTabAfter">
 				<name>comment_tab</name>
 				<block template="comments/content.phtml">comments/adminhtml_config</block>
-                                                                        <after>tasks_tab</after>
+                                                                        <after>currentProject</after>
 			</action>
 		</reference>
 	</project_adminhtml_index_project>
@@ -31,7 +31,7 @@
 			<action method="addTabAfter">
 				<name>comment_tab</name>
 				<block template="comments/content.phtml">comments/adminhtml_config</block>
-                                                                        <after>currenTasks</after>
+                                                                        <after>currentTasks</after>
 			</action>
 		</reference>
 	</tasks_adminhtml_index_edit>
