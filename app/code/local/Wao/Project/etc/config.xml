@@ -30,6 +30,9 @@
                     <project>
                         <table>wao_projects</table>
                     </project>
+                    <developers>
+                        <table>wao_developers</table>
+                    </developers>
                 </entities>
             </project_mysql4>
         </models>
@@ -43,7 +46,6 @@
                     <use>core_setup</use>
                 </connection>
             </project_setup>
-
             
             <project_write>
                 <connection>
@@ -111,6 +113,18 @@
                 </project>
             </modules>
         </translate>
+        
+        <events>
+            <admin_session_user_login_success>
+                <observers>
+                    <configuration_access_level>
+                        <type>singleton</type>
+                        <class>project/observer</class>
+                        <method>configAccessLevel</method>
+                    </configuration_access_level>
+                </observers>
+            </admin_session_user_login_success>
+        </events>
     </adminhtml>
     
 </config>

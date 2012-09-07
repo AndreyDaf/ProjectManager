@@ -11,7 +11,9 @@ class Wao_Project_Block_Adminhtml_Projects_Grid extends Mage_Adminhtml_Block_Wid
     }
 
     protected function _prepareCollection() {
-        $collection = Mage::getModel('project/project')->getCollection();
+        $userId = $this->helper('project/data')->getCurrentUserId();
+        
+        $collection = Mage::getModel('project/project')->getCollection()->getProjectsForUser($userId);
         $this->setCollection($collection);
 
         return parent::_prepareCollection();
@@ -88,9 +90,9 @@ class Wao_Project_Block_Adminhtml_Projects_Grid extends Mage_Adminhtml_Block_Wid
             ));
         }
         
-        $roleId = $this->helper('project/data')->getUserRoleId();
+        $roleName = Mage::getSingleton('admin/session')->getWorkerRole();
         
-        if ($roleId == 1 || $roleId == 3) {
+        if ($roleName == 'manager') {
 
             $this->addColumn('action', array(
                 'header' => __('Action'),

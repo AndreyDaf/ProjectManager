@@ -11,9 +11,9 @@ class Wao_Project_Block_Adminhtml_Projects extends Mage_Adminhtml_Block_Widget_G
         
         parent::__construct();
         
-        $roleId = $this->helper('project/data')->getUserRoleId();
+        $roleName = Mage::getSingleton('admin/session')->getWorkerRole();
         
-        if ($roleId != 1 && $roleId != 3) {
+        if ($roleName != 'manager') {
             $this->_removeButton('add');
         }
     }
