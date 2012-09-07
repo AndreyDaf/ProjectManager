@@ -4,21 +4,13 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
    protected function _prepareForm()
    {
         
-        $collection = Mage::getModel('admin/user')->getCollection()->getData();
-        $user_values = array();
-        $i = 0;
-        foreach($collection as $user){
-            $value = $user["user_id"];
-            $label = $user["firstname"]." ".$user["lastname"];
-            $user_values[$i]['value'] = $value;
-            $user_values[$i]['label'] = $label;
-            $i++;
-        }
+        $user_values = Mage::getModel('tasks/tasks')->getUserToArray();
         
-        if(Mage::helper('core')->isModuleEnabled('Wao_Project')){
+        
+        if(Mage::helper('tasks')->isModuleEnabled('Wao_Project')){
             $projects = Mage::getModel('tasks/projects')->getCollection()->getProjectNames();
         }
-        if(Mage::helper('core')->isModuleEnabled('Wao_Statuses')){
+        if(Mage::helper('tasks')->isModuleEnabled('Wao_Statuses')){
             $statuses = Mage::getModel('statuses/status')->getCollection()->statusesToArray();
             echo "<pre>";
             //var_dump($statuses);

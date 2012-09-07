@@ -39,9 +39,7 @@ class Wao_Tasks_Model_Resource_Developers_Collection extends Mage_Core_Model_Res
             $id = $item['id'];
             $tasks[$id] = $item['id_task'];
         }
-        //$data = $result[0]['id_project'];
-       
-        
+
         return $tasks;
     }
     
@@ -54,8 +52,6 @@ class Wao_Tasks_Model_Resource_Developers_Collection extends Mage_Core_Model_Res
         foreach($result as $item){
             $tasks[] = $item['id_task'];
         }
-        //$data = $result[0]['id_project'];
-       
         
         return $tasks;
     }

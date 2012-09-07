@@ -7,12 +7,6 @@
           $this->renderLayout();
     }
     
-    protected function _initAction()
-    {
-        $this->loadLayout()->_setActiveMenu('tasks');
-        return $this;
-     }
-    
       public function editAction()
       {
         $request = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -31,6 +25,7 @@
              
              Mage::register('tasks_data', $modelTasks);
              Mage::register('projects_data', Mage::getModel('tasks/projects'));
+             
              $this->loadLayout();
              
              if(preg_match('/project/',$referer)){
@@ -99,10 +94,10 @@
                  
                  
                  Mage::getModel('tasks/developers')->getCollection()->resetActive($taskId);
-                 //echo $this->getRequest()->getParam('id'); exit;
-                 echo "<pre>";
-                 //var_dump($developers); exit;
-                 echo "</pre>";
+//                 echo $this->getRequest()->getParam('id'); exit;
+//                 echo "<pre>";
+//                 var_dump($developers); exit;
+//                 echo "</pre>";
                  
                  
                  $devModel = Mage::getModel('tasks/developers');
@@ -115,7 +110,11 @@
                                ->addSuccess('Успешно сохранено');
                  Mage::getSingleton('adminhtml/session')
                                 ->settestData(false);
-                 $this->_redirectUrl($myRequest['url']);
+                 if($myRequest['url']) {
+                    $this->_redirectUrl($myRequest['url']);
+                 } else {
+                    $this->_redirect('*/*/');
+                 }
                 return;
           } catch (Exception $e){
                 Mage::getSingleton('adminhtml/session')

@@ -79,9 +79,6 @@
                     <projects>
                         <table>wao_projects</table>
                     </projects>
-                    <statuses>
-                        <table>wao_statuses</table>
-                    </statuses>
                     <developers>
                         <table>wao_developers</table>
                     </developers>
@@ -108,15 +105,5 @@
                 </connection>
             </tasks_read>
           </resources>
-          <events>
-              <admin_session_user_login_success>
-                    <observers>
-                        <configuration_access_level>
-                            <class>tasks/observer</class>
-                            <method>configAccessLevel</method>
-                        </configuration_access_level>
-                    </observers>
-               </admin_session_user_login_success>
-          </events>
      </global>
 </config>

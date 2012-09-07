@@ -18,7 +18,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Fo
         $this->_updateButton('delete', 'label', __('Delete task'));
         $this->_updateButton('back', 'onclick', 'setLocation(\'' . $myRequest['url'] .'\')');
         
-        if($this->roleName != 'manager'){
+        if($this->roleName == 'manager'){
          $this->_removeButton('save');
          $this->_removeButton('delete');
          $this->_removeButton('reset');

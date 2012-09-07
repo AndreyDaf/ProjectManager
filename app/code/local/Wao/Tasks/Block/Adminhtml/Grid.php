@@ -13,7 +13,7 @@ class Wao_Tasks_Block_Adminhtml_Grid extends Mage_Adminhtml_Block_Widget_Grid_Co
      $this->_addButtonLabel = __('Add New Tasks');
      parent::__construct();
      
-     if($this->roleName != 'manager'){
+     if($this->roleName == 'manager'){
          $this->_removeButton('add');
      }
      }

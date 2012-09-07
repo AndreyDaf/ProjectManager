@@ -10,10 +10,13 @@
 </tasks_adminhtml_index_index>
 
 <tasks_adminhtml_index_edit>
+ 
+
+ 
  <reference name="content">
    <block type="tasks/adminhtml_task_edit" name="tasks_edit" />
  </reference>
- <reference name="left">
+  <reference name="left">
    <block type="tasks/adminhtml_task_edit_tabs" name="tasks_edit_tabs" />
  </reference>
 </tasks_adminhtml_index_edit>

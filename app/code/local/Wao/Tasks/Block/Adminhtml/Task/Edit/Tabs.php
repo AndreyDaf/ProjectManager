@@ -11,13 +11,14 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tabs extends Mage_Adminhtml_Block_Widg
      {
           parent::__construct();
           $this->setId('tasks_form');
-          $this->setDestElementId('edit_form');
+          $this->setDestElementId('edit_tasks_form');
           $this->setTitle(__('Tasks editor'));
+          
       }
       protected function _beforeToHtml()
       {
           $this->roleName = Mage::getSingleton('core/session')->getWorkerRole();
-          if($this->roleName == 'manager'){
+          if($this->roleName != 'manager'){
             $block = $this->blockManager;
          } else {
              $block = $this->blockUser;
