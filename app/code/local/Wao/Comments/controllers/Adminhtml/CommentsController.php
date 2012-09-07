@@ -54,8 +54,13 @@ class Wao_Comments_Adminhtml_CommentsController extends Mage_Adminhtml_Controlle
 
     $comment    ->setId($data['id'])->save();
     $this       ->_redirectUrl($_SERVER['HTTP_REFERER']);
+  }
 
-
+  public function sortAction()
+  {
+    $data = $this->getRequest()->getPost();
+    Mage::getSingleton('core/session')->setOrder($data['sort']);
+    $this->_redirectUrl($_SERVER['HTTP_REFERER']);
   }
 
 

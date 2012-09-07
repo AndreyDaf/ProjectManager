@@ -1,7 +1,41 @@
+<?php
+
+    $sort_order = Mage::getSingleton('core/session')->getOrder();
+    $comments = array();
+?>
+
 <div class="entry-edit">
     <div class="entry-edit-head">
         <h4 class="icon-head head-edit-form fieldset-legend">All Comments</h4>
     </div>
+    
+    <br />
+    
+    <div>
+        <form method="post" action="<?php echo $this->getUrl('comments/adminhtml_comments/sort/');?>">
+            <div >
+                <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
+                <input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
+                <?php
+                    if($sort_order==null || $sort_order=="ASC") 
+                    {
+                        echo "<label>Сверху вниз</label><input type='radio' name='sort' value='ASC' checked />";
+                        echo "<label>Знизу вверх</label><input type='radio' name='sort' value='DESC'/>";
+                    }
+                    else 
+                    { 
+                        echo "<label>Сверху вниз</label><input type='radio' name='sort' value='ASC'/>";
+                        echo "<label>Знизу вверх</label><input type='radio' name='sort' value='DESC' checked />";
+                    }
+                ?>
+
+                <input type="submit" id="sort_submit" value="Сортировать" />
+            </div>
+        </form>
+    </div>
+
+    <br />
+
     <div id="group_fields4" class="fieldset fieldset-wide">
         <?php
         if (Mage::getSingleton('admin/session')->isLoggedIn()) 
@@ -10,23 +44,27 @@
         }
 
         if ($this->getRequest()->getModuleName()=="project")
-            $project = $this->getRequest()->getParam('id');       
+            $project = $this->getRequest()->getParam('pr');       
         if ($this->getRequest()->getModuleName()=="tasks")
             $task = $this->getRequest()->getParam('id');
 
-        $comments = Mage::getModel('comments/post')->getCollection();
-
+        
+        //$comments = Mage::getModel('comments/post')->getCollection();
+        
         if ($project != null || $project != 0)
         {
-            //$comments = Mage::getModel('comments/post')->getCollection();
-            $comments = $comments->addFieldToFilter('project', $project);            
-            if($task != null || $task != 0)
-            {
-                $comments = $comments->addFieldToFilter('task',$task);
-            }
+            $comments = Mage::getModel('comments/post')->getCollection();
+            $comments = $comments->addFieldToFilter('project', $project)->setOrder('id', $sort_order);
+        }
+        if($task != null || $task != 0)
+        {
+            $comments = Mage::getModel('comments/post')->getCollection();
+            $comments = $comments->addFieldToFilter('task',$task)->setOrder('id', $sort_order);
         }
 
-        foreach ($comments as $item): ?>
+
+
+        foreach ($comments as $item):?>
             <table id="comment_list">
                         <tr>
                             <td collspan='2 '><b><?=$item['author']?></b></td>
@@ -51,15 +89,15 @@
                      
                             </td>
                         </tr>
-                    </table>
-                    <br />
+            </table>
+            <br />
                 
         <? endforeach; ?>
 
     </div>
 
     <br />
-    
+
     <form id="post_form" method="POST" action="<?php echo $this->getUrl('comments/adminhtml_comments/add/');?>">
        
         <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
@@ -79,7 +117,7 @@
     <div id="edit_block">
         <a href="javascript:hide_edit();">Закрыть</a>
         <br />
-        <form id="edit_form" method="POST" action="<?php echo $this->getUrl('comments/adminhtml_comments/edit/');?>">
+        <form id="edit_comment_form" method="POST" action="<?php echo $this->getUrl('comments/adminhtml_comments/edit/');?>">
             <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
             <input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
             <input name="Project_id" type="hidden" value="<?php echo $project; ?>" />
