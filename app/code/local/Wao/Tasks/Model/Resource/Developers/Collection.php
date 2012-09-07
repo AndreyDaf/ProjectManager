@@ -7,10 +7,6 @@ class Wao_Tasks_Model_Resource_Developers_Collection extends Mage_Core_Model_Res
         $this->_init('tasks/developers');
     }
     
-    
-    
-    
-    
     public function getUsers($tasks_id){
         $developers = array();
         $select= $this->getConnection()->select()->from("wao_developers")
@@ -21,8 +17,6 @@ class Wao_Tasks_Model_Resource_Developers_Collection extends Mage_Core_Model_Res
             $id = $item['id'];
             $developers[$id] = $item['id_user'];
         }
-        //$data = $result[0]['id_project'];
-       
         
         return $developers;
     }
@@ -50,4 +44,34 @@ class Wao_Tasks_Model_Resource_Developers_Collection extends Mage_Core_Model_Res
         
         return $tasks;
     }
+    
+     public function getTasksForProject($id_project){
+        $tasks = array();
+        $select= $this->getConnection()->select()->from("wao_developers")
+                ->where('id_project = ?', $id_project)->where('active = ?', 0);
+       
+        $result = $this->getConnection()->fetchAll($select);
+        foreach($result as $item){
+            $tasks[] = $item['id_task'];
+        }
+        //$data = $result[0]['id_project'];
+       
+        
+        return $tasks;
+    }
+    
+    public function getTasksForProjectForUser($id_project){
+        $id_user = Mage::getSingleton('admin/session')->getUser()->getId();
+        $tasks = array();
+        $select= $this->getConnection()->select()->from("wao_developers")
+                ->where('id_project = ?', $id_project)->where('id_user = ?', $id_user)->where('active = ?', 0);
+       
+        $result = $this->getConnection()->fetchAll($select);
+        foreach($result as $item){
+            $tasks[] = $item['id_task'];
+        }
+        
+        return $tasks;
+    }
+    
 }

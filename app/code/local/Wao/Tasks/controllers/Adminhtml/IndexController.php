@@ -3,15 +3,14 @@
      
     public function indexAction(){
           $this->loadLayout();
-          //$this->_addContent($this->getLayout()->createBlock('tasks/adminhtml_grid'));
+          $this->_setActiveMenu('tasks');
           $this->renderLayout();
     }
     
     protected function _initAction()
     {
         $this->loadLayout()->_setActiveMenu('tasks');
-                //->_addBreadcrumb('test Manager','test Manager');
-       return $this;
+        return $this;
      }
     
       public function editAction()
@@ -19,13 +18,13 @@
         $request = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         $referer = $_SERVER['HTTP_REFERER'];
          if($request != $referer){
-              Mage::getSingleton('core/session')->setMyRequest(array('url'=> $_SERVER['HTTP_REFERER']));
+              Mage::getSingleton('core/session')->setMyRequest(array('url'=> $referer));
           }
         
           
            $id = $this->getRequest()->getParam('id');
            $modelTasks = Mage::getModel('tasks/tasks')->load($id);
-            //var_dump($testModel); 
+            
            if(!$modelTasks->getId()) Mage::register('is_new',1);
            if ($modelTasks->getId() || $id == 0)
            {
@@ -34,17 +33,15 @@
              Mage::register('projects_data', Mage::getModel('tasks/projects'));
              $this->loadLayout();
              
+             if(preg_match('/project/',$referer)){
+                 $this->_setActiveMenu('project');
+             } else {
+               $this->_setActiveMenu('tasks');  
+             }
              
              
-             $this->_setActiveMenu('tasks');
-             //$this->_addBreadcrumb('test Manager', 'test Manager');
-             //$this->_addBreadcrumb('Test Description', 'Test Description');
+             
              $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
-//             $this->_addContent($this->getLayout()
-//                  ->createBlock('tasks/adminhtml_task_edit'))
-//                  ->_addLeft($this->getLayout()
-//                  ->createBlock('tasks/adminhtml_task_edit_tabs')
-//              );
              $this->renderLayout();
            }
            else
@@ -56,27 +53,16 @@
        }
        public function newAction()
        {
-           //$test = Mage::getModel('tasks/tasks')->getCollection()->addFieldToFilter('id',array(1));
-           
-           
-           //echo "<pre>";
-           //print_r($tasks);
-           //Reflection::export(new ReflectionClass('Mage_Admin_Model_Session'));
-          //die;
            $this->_forward('edit');
        }
        public function saveAction()
        {
-           
+         $myRequest = Mage::getSingleton('core/session')->getMyRequest();
          if ($this->getRequest()->getPost())
          {
            try {
              
                  $postData = $this->getRequest()->getPost();
-//                 header('Content-Type: text/html;charset=UTF-8');
-//                 echo "<pre>";
-//                 var_dump($postData); die;
-//                 echo "</pre>";
                  $project_id = $postData['project_id'];
                  $developersData = $postData['developers'];
                  unset($postData['project_id']);
@@ -129,7 +115,7 @@
                                ->addSuccess('Успешно сохранено');
                  Mage::getSingleton('adminhtml/session')
                                 ->settestData(false);
-                 $this->_redirect('*/*/');
+                 $this->_redirectUrl($myRequest['url']);
                 return;
           } catch (Exception $e){
                 Mage::getSingleton('adminhtml/session')
@@ -148,6 +134,7 @@
             }
           public function deleteAction()
           {
+              $myRequest = Mage::getSingleton('core/session')->getMyRequest();
               if($this->getRequest()->getParam('id') > 0)
               {
                 try
@@ -158,7 +145,7 @@
                               ->delete();
                     Mage::getSingleton('adminhtml/session')
                                ->addSuccess('Успешно удалено');
-                    $this->_redirect('*/*/');
+                    $this->_redirectUrl($myRequest['url']);
                  }
                  catch (Exception $e)
                   {
@@ -167,7 +154,7 @@
                            $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
                   }
              }
-            $this->_redirect('*/*/');
+            $this->_redirectUrl($myRequest['url']);
        }
        
        public function submitAction()
@@ -178,14 +165,12 @@
            try {
              
                  $taskModel = Mage::getModel('tasks/tasks');
-                 if(!Mage::helper('tasks')->isModuleEnabled('Wao_Statuses')){
-                     $statuses = Mage::getModel('statuses/status')->getCollection()->statusesToArray();
+                 if(Mage::helper('tasks')->isModuleEnabled('Wao_Statuses')){
+                     $statuses = Mage::getModel('statuses/status')->getCollection()->getData();
                      
-                 }
-                 
-                 $taskModel->setStatus('Отправлено на проверку')
+                 $taskModel->setStatus($statuses[2]['status'])
                     ->setId($id)->save();
-                 
+                 }
                  
                  
                  

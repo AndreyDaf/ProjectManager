@@ -19,7 +19,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
             $projects = Mage::getModel('tasks/projects')->getCollection()->getProjectNames();
         }
         if(Mage::helper('core')->isModuleEnabled('Wao_Statuses')){
-            $statuses = Mage::getModel('statuses/status')->getCollection();
+            $statuses = Mage::getModel('statuses/status')->getCollection()->statusesToArray();
             echo "<pre>";
             //var_dump($statuses);
             echo "</pre>";
@@ -85,10 +85,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
                 'title'     => __('Status'),
                 'name'      => 'status',
                 'required' => true,
-                'values'    => array(
-                    'В разработкеee' => 'В разработке',
-                    'Оконченоeeее' => 'Окончено',
-                )));
+                'values'    => $statuses));
         }
         
         $fieldset->addField('developers', 'multiselect', array(

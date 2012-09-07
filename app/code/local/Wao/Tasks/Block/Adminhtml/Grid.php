@@ -1,9 +1,10 @@
 <?php
 class Wao_Tasks_Block_Adminhtml_Grid extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
-    public function __construct()
-    {
-
+    public $roleName;
+    
+    public function __construct() {
+     $this->roleName = Mage::getSingleton('core/session')->getWorkerRole();
      $this->_controller = 'adminhtml_task';
      
      $this->_blockGroup = 'tasks';
@@ -12,9 +13,9 @@ class Wao_Tasks_Block_Adminhtml_Grid extends Mage_Adminhtml_Block_Widget_Grid_Co
      $this->_addButtonLabel = __('Add New Tasks');
      parent::__construct();
      
-//     if(Mage::helper('tasks')->getUserRole() == 3){
-//         $this->_removeButton('add');
-//     }
+     if($this->roleName != 'manager'){
+         $this->_removeButton('add');
+     }
      }
      
     

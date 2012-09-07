@@ -8,11 +8,6 @@
             <codePool>local</codePool>
         </Wao_Statuses>
         
-        <Wao_Uploader>
-            <active>true</active>
-            <codePool>local</codePool>
-        </Wao_Uploader>
-        
         <Wao_Project>
             <active>true</active>
             <codePool>local</codePool>

@@ -2,6 +2,7 @@
 
 class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
+    public $roleName;
     public function __construct()
     {
         parent::__construct();
@@ -80,9 +81,18 @@ class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Gr
 //            $item->setData($value);
 //            $collection->addItem($item);
 //        }
+        $this->roleName = Mage::getSingleton('core/session')->getWorkerRole();
         $collection = Mage::getModel('tasks/tasks')->getCollection();
+        if($this->roleName == 'manager'){
+            
+            $tasksForProject = Mage::getModel('tasks/developers')->getCollection()->getTasksForProject($this->getRequest()->getParam('pr'));
+        $collection->addFieldToFilter('id',$tasksForProject);
+        } else {
+            
+            $tasksForProjectForUser = Mage::getModel('tasks/developers')->getCollection()->getTasksForProjectForUser($this->getRequest()->getParam('pr'));
+        $collection->addFieldToFilter('id',$tasksForProjectForUser);
+        }
         $this->setCollection($collection);
-
         return parent::_prepareCollection();
     }
 
@@ -106,14 +116,16 @@ class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Gr
                     'header' => __('Start date'),
                     'align' =>'left',
                     'index' => 'start_date',
-                    'type'      => 'datetime'
+                    'type'      => 'datetime',
+                   'format' => 'dd.MM.yyyy HH:mm:ss'
               ));
         $this->addColumn('end_date',
                array(
                     'header' => __('End date'),
                     'align' =>'left',
                     'index' => 'end_date',
-                   'type'      => 'datetime'
+                   'type'      => 'datetime',
+                   'format' => 'dd.MM.yyyy HH:mm:ss'
               ));
         
         if(Mage::helper('core')->isModuleEnabled('Wao_Statuses') ){

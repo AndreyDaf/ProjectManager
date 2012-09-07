@@ -5,17 +5,19 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tabs extends Mage_Adminhtml_Block_Widg
      
     public $blockManager = 'tasks/adminhtml_task_edit_tab_form';
     public $blockUser = 'tasks/adminhtml_task_edit_tab_view';
+    public $roleName;
     
     public function __construct()
      {
           parent::__construct();
-          $this->setId('tasks_tabs');
+          $this->setId('tasks_form');
           $this->setDestElementId('edit_form');
           $this->setTitle(__('Tasks editor'));
       }
       protected function _beforeToHtml()
       {
-          if(Mage::helper('tasks')->getUserRole() == 3){
+          $this->roleName = Mage::getSingleton('core/session')->getWorkerRole();
+          if($this->roleName == 'manager'){
             $block = $this->blockManager;
          } else {
              $block = $this->blockUser;

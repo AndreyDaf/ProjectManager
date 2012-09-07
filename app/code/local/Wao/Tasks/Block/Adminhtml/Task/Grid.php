@@ -37,6 +37,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
                     'align' =>'left',
                     'index' => 'start_date',
                     'type'      => 'datetime',
+                    'format' => 'dd.MM.yyyy HH:mm:ss',
                     'width' => '180px'
               ));
         $this->addColumn('end_date',
@@ -45,15 +46,19 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
                     'align' =>'left',
                     'index' => 'end_date',
                     'type'      => 'datetime',
+                   'format' => 'dd.MM.yyyy HH:mm:ss',
                     'width' => '180px'
               ));
         
-        if(Mage::helper('core')->isModuleEnabled('Wao_Statuses') ){
+        if(Mage::helper('tasks')->isModuleEnabled('Wao_Statuses') ){
+        $statuses = Mage::getModel('statuses/status')->getCollection()->statusesToArray();
         $this->addColumn('status',
                array(
                     'header' => __('Status'),
                     'align' =>'left',
                     'index' => 'status',
+                    'type' => 'options',
+                    'options' => $statuses,
                     'width' => '180px',
               ));
         }

@@ -1,9 +1,10 @@
 <?php
 class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Form_Container{
   
-    public function __construct()
-   { 
-        //echo Mage::registry('referer');
+    public $roleName;
+    
+    public function __construct() { 
+        $this->roleName = Mage::getSingleton('core/session')->getWorkerRole();
         $myRequest = Mage::getSingleton('core/session')->getMyRequest();
         $id = $this->getRequest()->getParam('id');
         parent::__construct();
@@ -15,8 +16,9 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Fo
 
         $this->_updateButton('save', 'label',__('Save task'));
         $this->_updateButton('delete', 'label', __('Delete task'));
-       $this->_updateButton('back', 'onclick', 'setLocation(\'' . $myRequest['url'] .'\')');
-        if(Mage::helper('tasks')->getUserRole() != 3){
+        $this->_updateButton('back', 'onclick', 'setLocation(\'' . $myRequest['url'] .'\')');
+        
+        if($this->roleName != 'manager'){
          $this->_removeButton('save');
          $this->_removeButton('delete');
          $this->_removeButton('reset');
