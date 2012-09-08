@@ -81,16 +81,14 @@ class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Gr
 //            $item->setData($value);
 //            $collection->addItem($item);
 //        }
-        $this->roleName = Mage::getSingleton('core/session')->getWorkerRole();
+        $this->roleName = Mage::getSingleton('admin/session')->getWorkerRole();
         $collection = Mage::getModel('tasks/tasks')->getCollection();
         if($this->roleName == 'manager'){
-            
             $tasksForProject = Mage::getModel('tasks/developers')->getCollection()->getTasksForProject($this->getRequest()->getParam('pr'));
-        $collection->addFieldToFilter('id',$tasksForProject);
-        } else {
-            
+            $collection->addFieldToFilter('id',$tasksForProject);
+        } elseif($this->roleName == 'admin') {} else {
             $tasksForProjectForUser = Mage::getModel('tasks/developers')->getCollection()->getTasksForProjectForUser($this->getRequest()->getParam('pr'));
-        $collection->addFieldToFilter('id',$tasksForProjectForUser);
+            $collection->addFieldToFilter('id',$tasksForProjectForUser);
         }
         $this->setCollection($collection);
         return parent::_prepareCollection();

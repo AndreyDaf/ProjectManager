@@ -6,16 +6,11 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
         
         $user_values = Mage::getModel('tasks/tasks')->getCollection()->getUserToArray();
         
-        echo "<pre>";
-        var_dump($user_values->getData());
         if(Mage::helper('tasks')->isModuleEnabled('Wao_Project')){
             $projects = Mage::getModel('tasks/projects')->getCollection()->getProjectNames();
         }
         if(Mage::helper('tasks')->isModuleEnabled('Wao_Statuses')){
             $statuses = Mage::getModel('statuses/status')->getCollection()->statusesToArray();
-            echo "<pre>";
-            //var_dump($statuses);
-            echo "</pre>";
         }
         
        $form = new Varien_Data_Form();

@@ -61,12 +61,11 @@ class Wao_Tasks_Model_Resource_Developers_Collection extends Mage_Core_Model_Res
         $tasks = array();
         $select= $this->getConnection()->select()->from("wao_developers")
                 ->where('id_project = ?', $id_project)->where('id_user = ?', $id_user)->where('active = ?', 0);
-       
+               
         $result = $this->getConnection()->fetchAll($select);
         foreach($result as $item){
             $tasks[] = $item['id_task'];
         }
-        
         return $tasks;
     }
     
