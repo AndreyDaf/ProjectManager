@@ -4,7 +4,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Fo
     public $roleName;
     
     public function __construct() { 
-        $this->roleName = Mage::getSingleton('core/session')->getWorkerRole();
+        $this->roleName = Mage::getSingleton('admin/session')->getWorkerRole();
         $myRequest = Mage::getSingleton('core/session')->getMyRequest();
         $id = $this->getRequest()->getParam('id');
         parent::__construct();

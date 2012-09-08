@@ -4,7 +4,7 @@ class Wao_Tasks_Block_Adminhtml_Grid extends Mage_Adminhtml_Block_Widget_Grid_Co
     public $roleName;
     
     public function __construct() {
-     $this->roleName = Mage::getSingleton('core/session')->getWorkerRole();
+     $this->roleName = Mage::getSingleton('admin/session')->getWorkerRole();
      $this->_controller = 'adminhtml_task';
      
      $this->_blockGroup = 'tasks';

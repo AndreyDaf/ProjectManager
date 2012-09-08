@@ -4,9 +4,10 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
    protected function _prepareForm()
    {
         
-        $user_values = Mage::getModel('tasks/tasks')->getUserToArray();
+        $user_values = Mage::getModel('tasks/tasks')->getCollection()->getUserToArray();
         
-        
+        echo "<pre>";
+        var_dump($user_values->getData());
         if(Mage::helper('tasks')->isModuleEnabled('Wao_Project')){
             $projects = Mage::getModel('tasks/projects')->getCollection()->getProjectNames();
         }
