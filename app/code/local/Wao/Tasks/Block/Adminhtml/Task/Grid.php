@@ -6,13 +6,12 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
        parent::__construct();
        $this->setId('taskGrid');
        $this->setDefaultSort('id');
-       $this->setDefaultDir('ASC');
+       $this->setDefaultDir('DESC');
        $this->setSaveParametersInSession(true);
    }
    protected function _prepareCollection()
    {
-      $collection = Mage::getModel('tasks/tasks')->getCollection();//->addFieldToFilter('id',);
-      //$tasksForUser = Mage::getModel('tasks/developers')->getCollection()->getTasksForUser();
+      $collection = Mage::getModel('tasks/tasks')->getCollection();
       $this->setCollection($collection);
       return parent::_prepareCollection();
     }

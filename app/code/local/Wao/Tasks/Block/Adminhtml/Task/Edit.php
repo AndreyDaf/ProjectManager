@@ -4,10 +4,15 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Fo
     public $roleName;
     
     public function __construct() { 
+        
         $this->roleName = Mage::getSingleton('admin/session')->getWorkerRole();
+        
         $myRequest = Mage::getSingleton('core/session')->getMyRequest();
+        
         $id = $this->getRequest()->getParam('id');
+        
         parent::__construct();
+        
         $this->_objectId = 'id';
 
         $this->_blockGroup = 'tasks';
@@ -15,6 +20,9 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Fo
         $this->_controller = 'adminhtml_task';
 
         $this->_updateButton('save', 'label',__('Save task'));
+        
+        $this->_updateButton('save', 'onclick', 'editForm.submit()');
+        
         $this->_updateButton('delete', 'label', __('Delete task'));
         $this->_updateButton('back', 'onclick', 'setLocation(\'' . $myRequest['url'] .'\')');
         
@@ -25,7 +33,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Fo
          
         $this->_addButton('submit', array(
             'label'     => __('Send to check'),//
-            'onclick'   => 'setLocation(\'' . $this->getUrl('*/*/submit/',array('id'=>$id))  . '\')',
+            'onclick'   => 'setLocation(\'' . $this->getUrl('*/*/submit/',array('id'=>$id))  . '\')'
         )); 
          
          

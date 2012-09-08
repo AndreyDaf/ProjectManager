@@ -35,7 +35,6 @@
              }
              
              
-             
              $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
              $this->renderLayout();
            }
@@ -52,9 +51,8 @@
        }
        public function saveAction()
        {
-         $myRequest = Mage::getSingleton('core/session')->getMyRequest();
-         if ($this->getRequest()->getPost())
-         {
+         
+           if ($this->getRequest()->getPost()){
            try {
              
                  $postData = $this->getRequest()->getPost();
@@ -108,13 +106,9 @@
                     }
                  Mage::getSingleton('adminhtml/session')
                                ->addSuccess('Успешно сохранено');
-                 Mage::getSingleton('adminhtml/session')
-                                ->settestData(false);
-                 if($myRequest['url']) {
-                    $this->_redirectUrl($myRequest['url']);
-                 } else {
-                    $this->_redirect('*/*/');
-                 }
+                 
+                 $this->_redirect('*/*/');
+                 
                 return;
           } catch (Exception $e){
                 Mage::getSingleton('adminhtml/session')
