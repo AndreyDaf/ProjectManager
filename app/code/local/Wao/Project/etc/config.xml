@@ -6,6 +6,16 @@
         </Wao_Project>
     </modules>
     
+    <stores>
+        <admin>
+            <design>
+                <theme>
+                    <default>go</default>
+                </theme>
+            </design>
+        </admin>
+    </stores>
+    
     <global>
         <helpers>
             <project>
