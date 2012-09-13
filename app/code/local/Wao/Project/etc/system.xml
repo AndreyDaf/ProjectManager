@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <tabs>
+        <wao translate="label" module="project">
+            <label>WAO</label>
+            <sort_order>1000000</sort_order>
+        </wao>
+    </tabs>
+    
+    <sections>
+        <wao_roles translate="label">
+            <label>Roles</label>
+            <tab>wao</tab>
+<!--            <class></class>-->
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <set_roles translate="label">
+                    <label>Set roles</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <admin_role translate="label">
+                            <label>Role "Administrators" (id)</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>project/validate_roles</backend_model>
+                            <validate>validate-digits validate-greater-than-zero</validate>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </admin_role>
+                        
+                        <manager_role translate="label">
+                            <label>Role "Managers" (id)</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>project/validate_roles</backend_model>
+                            <validate>validate-digits validate-greater-than-zero</validate>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </manager_role>
+                    </fields>
+                </set_roles>
+            </groups>
+        </wao_roles>
+    </sections>
+</config>

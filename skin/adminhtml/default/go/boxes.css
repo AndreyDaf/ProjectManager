@@ -671,6 +671,11 @@ div.main-col { margin-left:210px; min-height:450px; padding:0 0 25px 25px; }
 html[lang="de"] div.main-col,
 html[lang="fr"] div.main-col { margin-left:250px; }
 div.main-col-inner { float:left; /* Fixes some inner clears in the liquid main-col */ width:100%; }
+div.main-col-inner .project_buttons { height: 28px; padding-bottom: 10px; }
+#content #project_tabs_currentProject_content,
+#content #project_tabs_tasks_tab_content,
+#content #project_tabs_comment_tab_content,
+#content #project_tabs_files_tab_content { width: 100%; float: left; }
 
 .simple-container-popup { min-height:50px !important; padding:1.8em 2.3em 6em 2.3em; background:url(images/simple_container_bg.gif) repeat-x; }
 

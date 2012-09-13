@@ -69,43 +69,9 @@
                 </connection>
             </project_read>
         </resources>
-        
     </global>
     
-    <admin>
-        <routers>
-            <project>
-                <use>admin</use>
-                <args>
-                    <module>Wao_Project</module>
-                    <frontName>project</frontName>
-                </args>
-            </project>
-        </routers>
-    </admin>
-    
     <adminhtml>
-        <menu>
-            <project module="adminhtml">
-                <title>Проекты</title>
-                <sort_order>100</sort_order>
-                <action>project/adminhtml_index</action>
-            </project>
-        </menu>
-        
-        <acl>
-            <resources>
-                <admin>
-                    <children>
-                        <project translate="title" module="adminhtml">
-                            <title>Project</title>
-                            <sort_order>100</sort_order>
-                        </project>
-                    </children>
-                </admin>
-            </resources>
-        </acl>
-        
         <layout>
             <updates>
                 <project>
@@ -113,7 +79,7 @@
                 </project>
             </updates>
         </layout>
-        
+    
         <translate>
             <modules>
                 <project>
@@ -129,7 +95,7 @@
                 <observers>
                     <configuration_access_level>
                         <type>singleton</type>
-                        <class>project/observer</class>
+                        <class>project/observer_setRole</class>
                         <method>configAccessLevel</method>
                     </configuration_access_level>
                 </observers>
@@ -137,4 +103,15 @@
         </events>
     </adminhtml>
     
+    <admin>
+        <routers>
+            <project>
+                <use>admin</use>
+                <args>
+                    <module>Wao_Project</module>
+                    <frontName>project</frontName>
+                </args>
+            </project>
+        </routers>
+    </admin>
 </config>

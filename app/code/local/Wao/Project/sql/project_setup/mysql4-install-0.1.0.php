@@ -21,9 +21,6 @@ $installer->run("
         KEY `fk_status` (`fk_status`)
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
-INSERT INTO {$this->getTable('project/project')} (`id`, `name`, `description`, `repository`, `start_date`, `end_date`, `fk_status`, `status`) VALUES
-(1, 'forpix', 'Project''s description', '', '2012-08-17 15:00:00', '2012-08-24 17:00:00', 1, 'в разработке');
-
   ");
 
 $installer->endSetup();
