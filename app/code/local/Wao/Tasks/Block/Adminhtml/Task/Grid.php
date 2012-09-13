@@ -11,7 +11,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Grid extends Mage_Adminhtml_Block_Widget_Gr
    }
    protected function _prepareCollection()
    {
-      $collection = Mage::getModel('tasks/tasks')->getCollection();
+      $collection = Mage::getModel('tasks/developers')->getCollection()->getTasksForUser();
       $this->setCollection($collection);
       return parent::_prepareCollection();
     }

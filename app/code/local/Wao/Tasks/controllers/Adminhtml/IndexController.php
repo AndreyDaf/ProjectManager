@@ -2,7 +2,7 @@
     class Wao_Tasks_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Action {
      
     public function indexAction(){
-          $this->loadLayout();
+          $this->loadLayout()->_title($this->__('Tasks'));
           $this->_setActiveMenu('tasks');
           $this->renderLayout();
     }
@@ -26,7 +26,7 @@
              Mage::register('tasks_data', $modelTasks);
              Mage::register('projects_data', Mage::getModel('tasks/projects'));
              
-             $this->loadLayout();
+             $this->loadLayout()->_title($this->__('Tasks editor'));
              
              if(preg_match('/project/',$referer)){
                  $this->_setActiveMenu('project');
@@ -92,12 +92,7 @@
                  
                  
                  Mage::getModel('tasks/developers')->getCollection()->resetActive($taskId);
-//                 echo $this->getRequest()->getParam('id'); exit;
-//                 echo "<pre>";
-//                 var_dump($developers); exit;
-//                 echo "</pre>";
-                 
-                 
+           
                  $devModel = Mage::getModel('tasks/developers');
                
                   foreach($developers as $dev){
@@ -105,7 +100,7 @@
                       ->setData($dev)->setId($dev['id'])->save();
                     }
                  Mage::getSingleton('adminhtml/session')
-                               ->addSuccess('Успешно сохранено');
+                               ->addSuccess(__('Success save'));
                  
                  $this->_redirect('*/*/');
                  
@@ -137,7 +132,7 @@
                                         ->getParam('id'))
                               ->delete();
                     Mage::getSingleton('adminhtml/session')
-                               ->addSuccess('Успешно удалено');
+                               ->addSuccess(__('Success delete'));
                     $this->_redirectUrl($myRequest['url']);
                  }
                  catch (Exception $e)
@@ -168,7 +163,7 @@
                  
                  
                  Mage::getSingleton('adminhtml/session')
-                               ->addSuccess('Задание отправлено на проверку');
+                               ->addSuccess(__('Task is sent to the moderation'));
                  Mage::getSingleton('adminhtml/session')
                                 ->settestData(false);
                  //$this->_redirect('*/*/');

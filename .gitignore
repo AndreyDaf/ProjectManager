@@ -1,5 +1,7 @@
 /var/cache/
 /var/session/
+/var/locks/
 /nbproject/
 /var/report/
 /errors/
+/media/files/

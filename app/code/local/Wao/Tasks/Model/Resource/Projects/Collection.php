@@ -8,14 +8,23 @@ class Wao_Tasks_Model_Resource_Projects_Collection extends Mage_Core_Model_Resou
     }
     
     public function getProjectNames(){
-        
-        $collection = $this->getData();
+        $id_user = Mage::getSingleton('admin/session')->getUser()->getId();
+        $projects = $this->getConnection()->select()
+                    ->from('wao_developers')
+                    ->where('id_task = ?',0)
+                ->where('id_user = ?', $id_user);
+            
+        $array = $this->getConnection()->fetchAll($projects);
+        $newarray = array();
+        foreach($array as $item){
+            $newarray[] = $item['id_project'];
+        }
+        $collection = $this->addFieldToFilter('id',$newarray)->getData();
         
         $projects = array();
-        $projects[''] = "-- Выберите --";
+        $projects[] = array('value'=>'','label'=>'-- Выберите --');
         foreach($collection as $pro){
-            $id = $pro['id'];
-            $projects[$id] = $pro['name'];
+            $projects[] = array('value'=>$pro['id'],'label'=>$pro['name']);
         }
         
         return $projects;

@@ -23,5 +23,10 @@
             <codePool>local</codePool>
         </Wao_Comments>
         
+        <Wao_Files>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Wao_Files>
+        
     </modules>
 </config>

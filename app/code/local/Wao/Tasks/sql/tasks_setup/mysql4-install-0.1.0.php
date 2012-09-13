@@ -4,8 +4,6 @@ $installer = $this;
 
 $installer->startSetup();
 
-//{$installer->getTable('widget/widget')}
-
 $installer->run("
 CREATE TABLE IF NOT EXISTS `{$installer->getTable('tasks/tasks')}` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,

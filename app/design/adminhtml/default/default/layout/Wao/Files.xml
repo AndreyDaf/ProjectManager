@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout>
+
+
+<project_adminhtml_index_project>
+    <reference name="project.tabs">
+        <action method="addTabAfter">
+            <name>files_tab</name>
+            <block>files/adminhtml_edit</block>
+            <after>currentProject</after>
+        </action>
+    </reference>
+</project_adminhtml_index_project>
+
+<tasks_adminhtml_index_edit>
+    <reference name="tasks_edit_tabs">
+        <action method="addTabAfter">
+            <name>files_tab</name>
+            <block>files/adminhtml_edit</block>
+            <after>currentTasks</after>
+        </action>
+    </reference>
+</tasks_adminhtml_index_edit>
+
+</layout>

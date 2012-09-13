@@ -18,8 +18,8 @@
     </admin>
     <adminhtml>
         <menu>
-            <tasks module="adminhtml">
-                <title>Задания</title>
+            <tasks module="adminhtml" translate="title">
+                <title>Tasks</title>
                 <sort_order>100</sort_order>
                 <action>tasks/adminhtml_index</action>
             </tasks>
@@ -28,8 +28,8 @@
             <resources>
                 <admin>
                     <children>
-                        <tasks  module="adminhtml">
-                            <title>Задания</title>
+                        <tasks  module="adminhtml" translate="title">
+                            <title>Tasks</title>
                             <sort_order>-1</sort_order>
                         </tasks>
                     </children>

@@ -8,6 +8,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
         
         if(Mage::helper('tasks')->isModuleEnabled('Wao_Project')){
             $projects = Mage::getModel('tasks/projects')->getCollection()->getProjectNames();
+        
         }
         if(Mage::helper('tasks')->isModuleEnabled('Wao_Statuses')){
             $statuses = Mage::getModel('statuses/status')->getCollection()->statusesToArray();
@@ -15,14 +16,16 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
         
        $form = new Varien_Data_Form();
        $this->setForm($form);
-       $fieldset = $form->addFieldset('tasks_form', array('legend'=>'Описание задания'));
+       $fieldset = $form->addFieldset('tasks_form', array('legend'=>__('Quest')));
         
        $fieldset->addField('project_id', 'select', array(
             'label'     => __('Project'),
             'title'     => __('Project'),
             'name'      => 'project_id',
+            'class'     => 'required-entry',
             'required' => true,
-            'values'    => $projects
+            'value' => '',
+            'values' => $projects
            )); 
        
        $fieldset->addField('title', 'text', array(

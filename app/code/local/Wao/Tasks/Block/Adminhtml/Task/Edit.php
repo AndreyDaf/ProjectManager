@@ -32,7 +32,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit extends Mage_Adminhtml_Block_Widget_Fo
          $this->_removeButton('reset');
          
         $this->_addButton('submit', array(
-            'label'     => __('Send to check'),//
+            'label'     => __('Send to check'),
             'onclick'   => 'setLocation(\'' . $this->getUrl('*/*/submit/',array('id'=>$id))  . '\')'
         )); 
          

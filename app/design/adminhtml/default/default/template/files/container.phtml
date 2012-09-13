@@ -1,0 +1,73 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo  __('Add files');?></h4>
+    </div>
+    <br />
+    <div id="group_fields4" class="fieldset fieldset-wide">
+        <?php
+        if (Mage::getSingleton('admin/session')->isLoggedIn()){
+            $author = Mage::getSingleton('admin/session')->getUser()->getName();
+            $moduleName = $this->getRequest()->getModuleName();
+            $date = date("Y-m-d H:i:s");
+            
+           
+        if ($moduleName == "tasks"){
+            $id = $this->getRequest()->getParam('id');       
+        }elseif ($moduleName == "project"){
+            $id = $this->getRequest()->getParam('pr');
+        }
+        
+            $files = Mage::getModel('files/files')
+                    ->getCollection()
+                    ->addFieldToFilter('module_name', $moduleName)
+                    ->addFieldToFilter('entity', $id);//->setOrder('id', $sort_order);
+          ?>
+        <table cellspacing="0" class="form-list">
+            <tbody>
+        <?php foreach ($files as $item):?>
+            <tr>
+                <td class="label">
+                    <?=$item->getName();?>
+                </td>
+                <td class="value">
+                    <a href="<?=$item->getPath();?>" target="_blank"><?=__('Download');?></a>
+                </td>
+            </tr>
+         <? endforeach; }?>
+              </tbody>
+        </table>
+     
+        <br /> 
+        <form id="post_form" method="post" enctype="multipart/form-data" action="<?php echo $this->getUrl('files/adminhtml_index/add/');?>">
+       
+        <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
+        <input name="form_key" type="hidden" value="<?=$formKey;?>" />
+        
+        <input name="module_name" type="hidden" value="<?=$moduleName;?>" />
+        <input name="entity" type="hidden" value="<?=$id;?>" /> 
+        <input name="date" type="hidden" value="<?=$date;?>" />
+        <input name="author" type="hidden" value="<?=$author;?>" />  
+        <table cellspacing="0" class="form-list">
+            <tbody>
+                <tr>
+                    <td class="label">
+                        <label for="import_file"><?=__('Select File to Upload');?> <span class="required">*</span></label></td>
+                    <td class="value">
+                        <input id="import_file" name="import_file" value="" title="Select File to Import" type="file"/><input type="submit" id="submit" value="<?=__('Upload');?>" /></td>
+                </tr>
+            </tbody>
+         </table>
+        
+    </form>
+    
+        <table cellspacing="0" class="form-list"><tbody><tr>
+        <td class="label"></td><td class="value">
+        <?php $maxUploadSize = Mage::helper('files')->getMaxUploadSize();
+        echo __('Total size of uploadable files must not exceed %s', $maxUploadSize);
+        ?></td></tr></tbody></table>
+
+  </div>
+</div>
+
+
+
