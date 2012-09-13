@@ -20,9 +20,7 @@ class Wao_Comments_Adminhtml_CommentsController extends Mage_Adminhtml_Controlle
     $comment    ->setTask($data['Task_id']);
     $comment    ->setProject($data['Project_id']);
     $comment    ->save();
-    $this       ->_redirectUrl($_SERVER['HTTP_REFERER']);
-  }
-
+  } 
 
 
   public function deleteAction()
@@ -32,12 +30,10 @@ class Wao_Comments_Adminhtml_CommentsController extends Mage_Adminhtml_Controlle
     try 
     {
       $comment  ->setId($id)->delete();
-      $this     ->_redirectUrl($_SERVER['HTTP_REFERER']);
     }
     catch (Exception $e)
     {
       echo $e->getMessage();
-      $this     ->_redirectUrl($_SERVER['HTTP_REFERER']);
     }
   }
 

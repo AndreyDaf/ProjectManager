@@ -1,7 +1,7 @@
 <?php
-
     $sort_order = Mage::getSingleton('core/session')->getOrder();
     $comments = array();
+    $lastId = 0;
 ?>
 
 <div class="entry-edit">
@@ -12,6 +12,8 @@
     <br />
     
     <div>
+        <input id="delete_key" type="hidden" value="<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("adminhtml_comments","delete"); ?>" />
+        <input id="last_id" type="hidden" value="<?php echo (Mage::getModel('comments/post')->getCollection()->getLastItem()->getId()+1); ?>" />
         <form method="post" action="<?php echo $this->getUrl('comments/adminhtml_comments/sort/');?>">
             <div >
                 <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
@@ -38,18 +40,18 @@
 
     <div id="group_fields4" class="fieldset fieldset-wide">
         <?php
+
         if (Mage::getSingleton('admin/session')->isLoggedIn()) 
         {
-            $name = Mage::getSingleton('admin/session')->getUser()->getName();
+            $userName = Mage::getSingleton('admin/session')->getUser()->getName();
         }
 
-        if ($this->getRequest()->getModuleName()=="project")
-            $project = $this->getRequest()->getParam('pr');       
-        if ($this->getRequest()->getModuleName()=="tasks")
-            $task = $this->getRequest()->getParam('id');
 
-        
-        //$comments = Mage::getModel('comments/post')->getCollection();
+        if ($this->getRequest()->getModuleName()=="project")
+                $project = $this->getRequest()->getParam('pr');       
+        if ($this->getRequest()->getModuleName()=="tasks")
+                $task = $this->getRequest()->getParam('id');
+
         
         if ($project != null || $project != 0)
         {
@@ -65,32 +67,34 @@
 
 
         foreach ($comments as $item):?>
-            <table id="comment_list">
-                        <tr>
-                            <td collspan='2 '><b><?=$item['author']?></b></td>
-                        </tr>
-                        <tr>
-                            <td collspan='2'>
-                                <div id="<?='comm_'.$item['id']?>">
-                                    <?=$item['comment']?>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><?=$item['date']?></td>
-                            <td>
-                
-                            <?php if ($name == $item['author']): ?>
-                                <div id="edit_panel">
-                                    <a href="#" onclick="show_edit(<?=$item['id']?>);" id="edit_link">Edit</a> 
-                                    &nbsp 
-                                    <a href="<?php echo $this->getUrl('comments/adminhtml_comments/delete/id/'.$item['id']);?>">Delete</a></div>
-                            <? endif; ?>
-                     
-                            </td>
-                        </tr>
-            </table>
-            <br />
+            <div id="<?php echo ("comment".$item['id']); ?>">
+                <table>
+                            <tr>
+                                <td collspan='2 '><b><?=$item['author']?></b></td>
+                            </tr>
+                            <tr>
+                                <td collspan='2'>
+                                    <div id="<?='comm_'.$item['id']?>">
+                                        <?=$item['comment']?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><?=$item['date']?></td>
+                                <td>
+                    
+                                <?php if ($userName == $item['author']): ?>
+                                    <div id="edit_panel">
+                                        <a href="#" onclick="show_edit(<?=$item['id']?>);" id="edit_link">Edit</a> 
+                                        &nbsp 
+                                        <a href="#" onclick="delete_link(<?=$item['id']?>);">Delete</a></div>
+                                <? endif; ?>
+                         
+                                </td>
+                            </tr>
+                </table>
+                <br />
+            </div>
                 
         <? endforeach; ?>
 
@@ -98,20 +102,22 @@
 
     <br />
 
-    <form id="post_form" method="POST" action="<?php echo $this->getUrl('comments/adminhtml_comments/add/');?>">
-       
+    <form id="post_form" method="POST" action="">        
+
         <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
+        
+        <input name="url" id="url" type="hidden" value="<?php echo $this->getUrl('comments/adminhtml_comments/add/');?>" />
         <input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
-        <?php $key = $this->getRequest()->getParam('key'); ?>
-        <input name="Project_id" type="hidden" value="<?php echo $project; ?>" />
-        <input name="Task_id" type="hidden" value="<?php echo $task; ?>" />   
+        <input name="date" id="date" type="hidden" value="<?php echo (date("Y-m-d H:i:s")); ?>" />
+        <input name="Project_id" id="Project_id" type="hidden" value="<?php echo $project; ?>" />
+        <input name="Task_id" id="Task_id" type="hidden" value="<?php echo $task; ?>" />   
         
         <table border = "0">
             <tr><td>Добавить комментарий:</td><td></td></tr>
-            <tr><td>Автор:</td><td><input type="text" name="Author" value="<?php echo($name); ?>" readonly /></td></tr>
-            <tr><td>Комментарий:</td><td><textarea rows="8" cols="85%" name="Comment"></textarea></td></tr>
+            <tr><td>Автор:</td><td><input type="text" name="Author" id="Author" value="<?php echo $userName; ?>" readonly /></td></tr>
+            <tr><td>Комментарий:</td><td><textarea rows="8" cols="85%" name="Comment" id="Comment"></textarea></td></tr>
         </table>
-        <input type="submit" id="submit" value="Отправить" />
+        <input type="button" id="send_submit" value="Отправить" />
     </form>
 
     <div id="edit_block">
@@ -119,14 +125,15 @@
         <br />
         <form id="edit_comment_form" method="POST" action="<?php echo $this->getUrl('comments/adminhtml_comments/edit/');?>">
             <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
+            <input name="date" id="date" type="hidden" value="<?php echo (date("Y-m-d H:i:s")); ?>" />
             <input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
             <input name="Project_id" type="hidden" value="<?php echo $project; ?>" />
             <input name="id" id='id' type="hidden" value="" />
             <input name="Task_id" type="hidden" value="<?php echo $task; ?>" /> 
-            <input type="hidden" name="Author" value="<?php echo($name); ?>" />
+            <input type="hidden" name="Author" value="<?php echo $userName; ?>" />
             Комментарий: 
             <br />
-            <textarea rows="8" cols="85%" id="Edit_comment" name="Comment"></textarea>
+            <textarea rows="8" cols="85%" id="edit_comment" name="Comment"></textarea>
             <br />
             <input type="submit" id="save" value="Сохранить" />
         </form>

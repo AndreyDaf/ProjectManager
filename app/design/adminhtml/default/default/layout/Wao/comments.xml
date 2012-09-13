@@ -3,18 +3,29 @@
 
 	<default>
         <reference name="head">
+            
             <action method="addItem">
                 <type>skin_js</type>
-                <name>js/comments.js</name>
+                <name>js/jquery-1.7.2.min.js</name>
+            </action>
+
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/no-conflict.js</name>
             </action>
 
             <action method="addCss">
                 <stylesheet>comments.css</stylesheet>
             </action>
+
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/comments.js</name>
+            </action>
+            
         </reference>
     </default>
 
-	<!-- To add a tab on edit product page -->
 	<project_adminhtml_index_project>
 		<reference name="project.tabs">
 			<action method="addTabAfter">
@@ -24,7 +35,7 @@
 			</action>
 		</reference>
 	</project_adminhtml_index_project>
-	<!-- To add a tab on edit product page -->
+
 
 	<tasks_adminhtml_index_edit>
 		<reference name="tasks_edit_tabs">
