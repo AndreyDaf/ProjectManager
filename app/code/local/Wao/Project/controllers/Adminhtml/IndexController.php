@@ -48,10 +48,11 @@ class Wao_Project_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Ac
     public function saveAction()
     {
         $data = $this->getRequest()->getPost();
+        $projectId = $this->getRequest()->getParam('id');
         
         if (!empty($data)) {
             try {
-                $newProject = Mage::getModel('project/project')->setData($data)
+                $newProject = Mage::getModel('project/project')->setData($data)->setId($projectId)
                     ->save();
                 Mage::getSingleton('adminhtml/session')->addSuccess('Project successfully saved');
             } catch (Mage_Core_Exception $e) {
@@ -72,13 +73,15 @@ class Wao_Project_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Ac
             'active' => 0
         );
         
-        try {
-            Mage::getModel('project/developers')->setData($developersData)->save();
-        } catch (Mage_Core_Exception $e) {
-            Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
-        } catch (Exception $e) {
-            Mage::logException($e);
-            Mage::getSingleton('adminhtml/session')->addError($this->__('Somethings went wrong'));
+        if (!isset($projectId)) {
+            try {
+                Mage::getModel('project/developers')->setData($developersData)->save();
+            } catch (Mage_Core_Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+            } catch (Exception $e) {
+                Mage::logException($e);
+                Mage::getSingleton('adminhtml/session')->addError($this->__('Somethings went wrong'));
+            }
         }
         
         return $this->_redirect('*/*/');
