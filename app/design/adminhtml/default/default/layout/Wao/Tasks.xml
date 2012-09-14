@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
 <layout>
 
-
+<default>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>files.css</stylesheet>
+            </action>   
+        </reference>
+</default>
 
 <tasks_adminhtml_index_index>
  <reference name="content">

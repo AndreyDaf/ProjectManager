@@ -27,10 +27,10 @@
         <?php foreach ($files as $item):?>
             <tr>
                 <td class="label">
-                    <?=$item->getName();?>
+                    <p><?=$item->getName();?></p>
                 </td>
                 <td class="value">
-                    <a href="<?=$item->getPath();?>" target="_blank"><?=__('Download');?></a>
+                     <a href="<?=$item->getPath();?>" target="_blank"><?=__('Download');?></a><span class="files">(<?=$item->getDate();?> | <?=$item->getAuthor();?>)</span>
                 </td>
             </tr>
          <? endforeach; }?>

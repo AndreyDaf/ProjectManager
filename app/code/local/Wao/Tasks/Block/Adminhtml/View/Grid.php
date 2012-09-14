@@ -7,9 +7,12 @@ class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Gr
     public function __construct()
     {
         parent::__construct();
+        $this->setTemplate('tasks/grid.phtml');
+        $this->setGridHeader(__('Tasks for this project'));
         $this->setFilterVisibility(false);
         $this->setPagerVisibility(false);
         $this->setUseAjax(false);
+        
     }
 
     protected function _prepareCollection()
