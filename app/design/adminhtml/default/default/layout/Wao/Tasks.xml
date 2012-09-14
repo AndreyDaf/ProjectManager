@@ -10,9 +10,6 @@
 </tasks_adminhtml_index_index>
 
 <tasks_adminhtml_index_edit>
- 
-
- 
  <reference name="content">
    <block type="tasks/adminhtml_task_edit" name="tasks_edit" />
  </reference>

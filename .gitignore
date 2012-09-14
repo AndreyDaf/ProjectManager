@@ -2,10 +2,7 @@
 /var/session/
 /var/locks/
 /nbproject/
-<<<<<<< Updated upstream
 /var/report/
 /errors/
 /media/files/
-=======
-/var/report/
->>>>>>> Stashed changes
+

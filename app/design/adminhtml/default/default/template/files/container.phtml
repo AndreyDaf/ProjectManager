@@ -9,7 +9,7 @@
             $author = Mage::getSingleton('admin/session')->getUser()->getName();
             $moduleName = $this->getRequest()->getModuleName();
             $date = date("Y-m-d H:i:s");
-            
+            //echo $this->getRequest()->getActionName();
            
         if ($moduleName == "tasks"){
             $id = $this->getRequest()->getParam('id');       
@@ -36,7 +36,7 @@
          <? endforeach; }?>
               </tbody>
         </table>
-     
+       
         <br /> 
         <form id="post_form" method="post" enctype="multipart/form-data" action="<?php echo $this->getUrl('files/adminhtml_index/add/');?>">
        
@@ -65,7 +65,7 @@
         <?php $maxUploadSize = Mage::helper('files')->getMaxUploadSize();
         echo __('Total size of uploadable files must not exceed %s', $maxUploadSize);
         ?></td></tr></tbody></table>
-
+        
   </div>
 </div>
 
