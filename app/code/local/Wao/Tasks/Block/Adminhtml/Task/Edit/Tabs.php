@@ -15,7 +15,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tabs extends Mage_Adminhtml_Block_Widg
           $this->setTitle(__('Tasks editor'));
           
       }
-      protected function _beforeToHtml()
+      public function _beforeToHtml()
       {
           $this->roleName = Mage::getSingleton('admin/session')->getWorkerRole();
           if($this->roleName == 'manager'){
@@ -34,5 +34,15 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tabs extends Mage_Adminhtml_Block_Widg
           $this->setActiveTab('currentTasks');
           
          return parent::_beforeToHtml();
+    }
+    
+    public function addTabAfter($tabId, $tab, $afterTabId)
+    {
+        $request = $_SERVER['REQUEST_URI'];
+        if(!preg_match('/new/',$request)){
+            $this->addTab($tabId, $tab);
+            $this->_tabs[$tabId]->setAfter($afterTabId);
+        }
+        
     }
 }

@@ -1,7 +1,9 @@
 <?php
     class Wao_Tasks_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Action {
      
-    public function indexAction(){
+   
+        
+        public function indexAction(){
           $this->loadLayout()->_title($this->__('Tasks'));
           $this->_setActiveMenu('tasks');
           $this->renderLayout();
@@ -33,7 +35,6 @@
              } else {
                $this->_setActiveMenu('tasks');  
              }
-             
              
              $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
              $this->renderLayout();
