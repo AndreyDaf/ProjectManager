@@ -7,7 +7,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
         $user_values = Mage::getModel('tasks/tasks')->getCollection()->getUserToArray();
         
         if(Mage::helper('tasks')->isModuleEnabled('Wao_Project')){
-            $projects = Mage::getModel('tasks/projects')->getCollection()->getProjectNames();
+          $projects = Mage::getModel('tasks/projects')->getCollection()->getProjectNames();
         
         }
         if(Mage::helper('tasks')->isModuleEnabled('Wao_Statuses')){
@@ -88,7 +88,7 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
         ));
         
         
-        //qwe  
+        
  if ( Mage::registry('tasks_data') )
  {
     $tasks_data = Mage::registry('tasks_data')->getData();
@@ -101,11 +101,6 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tab_Form extends Mage_Adminhtml_Block_
     $data['id'] = $tasks_data['id'];
     $data['developers'] = $developers;
     
-    
-    
-    echo "<pre>";
-    //var_dump(Mage::registry('is_new'));
-    echo "</pre>";
     $form->setValues($data);
   }
   return parent::_prepareForm();

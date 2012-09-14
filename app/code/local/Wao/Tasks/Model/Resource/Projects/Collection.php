@@ -13,7 +13,7 @@ class Wao_Tasks_Model_Resource_Projects_Collection extends Mage_Core_Model_Resou
             $projects = $this->getConnection()->select()
                         ->from('wao_developers')
                         ->where('id_task = ?',0)
-                    ->where('id_user = ?', $id_user);
+                        ->where('id_user = ?', $id_user);
 
             $array = $this->getConnection()->fetchAll($projects);
             $newarray = array();
@@ -21,14 +21,22 @@ class Wao_Tasks_Model_Resource_Projects_Collection extends Mage_Core_Model_Resou
                 $newarray[] = $item['id_project'];
             }
             $collection = $this->addFieldToFilter('id',$newarray)->getData();
+            
         }
-        $projects = array();
-        $projects[] = array('value'=>'','label'=>'-- Выберите --');
-        foreach($collection as $pro){
-            $projects[] = array('value'=>$pro['id'],'label'=>$pro['name']);
+        $res = array(
+            array(
+                'value' => '',
+                'label' => __('-- Please Select --')
+            )
+        );
+        foreach ($collection as $value) {
+            $res[] = array(
+               'value' => $value['id'],
+               'label' => $value['name']
+            );
+            
         }
-        
-        return $projects;
+        return $res;
     }
     
     public function getProjectId($task_id){
