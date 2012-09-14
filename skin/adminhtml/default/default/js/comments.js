@@ -38,7 +38,7 @@
             e.preventDefault();
 
         var data = $("post_form").serialize();
-        var form_post = "<div id='comment"+parseInt($j('#last_id').val())+"'><table id='comment_list'><tr><td collspan='2 '><b>"+$j('#Author').val()+"</b></td></tr><tr><td collspan='2'><div id='comm_"+parseInt($j('#last_id').val())+"'>"+$j('#Comment').val()+"</div></td></tr><tr><td>"+$j('#date').val()+"</td><td><div id='edit_panel'><a href='#' onclick='show_edit("+$j('#last_id').val()+")'>Edit</a> &nbsp <a href='#' onclick='delete_link("+$j('#last_id').val()+")'>Delete</a></div></td></tr></table><br /></div>";
+        var form_post = "<div id='comment"+parseInt($j('#last_id').val())+"' class='comment_block'><table id='comment_list'><tr><td collspan='2 '><b>"+$j('#Author').val()+"</b></td></tr><tr><td collspan='2'><div id='comm_"+parseInt($j('#last_id').val())+"'>"+$j('#Comment').val()+"</div></td></tr><tr><td>"+$j('#date').val()+"</td><td><div id='edit_panel'><a href='#' onclick='show_edit("+$j('#last_id').val()+")'>Edit</a> &nbsp <a href='#' onclick='delete_link("+$j('#last_id').val()+")'>Delete</a></div></td></tr></table><br /></div>";
         $j.ajax({
                 type: "POST",
                 url: $j('#url').val(),
