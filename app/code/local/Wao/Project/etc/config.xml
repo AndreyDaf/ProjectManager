@@ -16,6 +16,16 @@
         </admin>
     </stores>
     
+    <!-- Default values in settings -->
+    <default>
+        <wao_roles>
+            <set_roles>
+                <admin_role>1</admin_role>
+                <manager_role>3</manager_role>
+            </set_roles>
+        </wao_roles>
+    </default>
+    
     <global>
         <helpers>
             <project>

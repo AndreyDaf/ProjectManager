@@ -27,11 +27,11 @@
 -->
 <config>
     <menu>
-        <dashboard translate="title" module="adminhtml">
+<!--        <dashboard translate="title" module="adminhtml">
             <title>Dashboard</title>
             <sort_order>10</sort_order>
             <action>adminhtml/dashboard</action>
-        </dashboard>
+        </dashboard>-->
         <system translate="title" module="adminhtml">
             <title>System</title>
             <sort_order>90</sort_order>
@@ -122,10 +122,10 @@
             <admin translate="title" module="adminhtml">
                 <title>Magento Admin</title>
                 <children>
-                    <dashboard translate="title">
+<!--                    <dashboard translate="title">
                         <title>Dashboard</title>
                         <sort_order>0</sort_order>
-                    </dashboard>
+                    </dashboard>-->
                     <system translate="title">
                         <title>System</title>
                         <sort_order>90</sort_order>

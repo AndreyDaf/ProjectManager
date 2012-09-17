@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <menu>
-        <project module="adminhtml">
-            <title>Проекты</title>
-            <sort_order>100</sort_order>
+        <project module="project">
+            <title>Project</title>
+            <sort_order>1</sort_order>
             <action>project/adminhtml_index</action>
         </project>
     </menu>
@@ -14,7 +14,7 @@
                 <children>
                     <project translate="title" module="adminhtml">
                         <title>Project</title>
-                        <sort_order>500</sort_order>
+                        <sort_order>-3</sort_order>
                     </project>
  
                     <system>
