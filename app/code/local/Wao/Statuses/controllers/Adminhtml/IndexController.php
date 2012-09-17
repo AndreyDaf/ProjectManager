@@ -1,6 +1,6 @@
 <?php
 
-class Wao_Statuses_Adminhtml_IndexController extends Mage_Adminhtml_Controller_action {
+class Wao_Statuses_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Action {
 
     public function indexAction() {
         $this->loadLayout();

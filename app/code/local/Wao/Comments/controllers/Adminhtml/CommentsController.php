@@ -4,8 +4,9 @@ class Wao_Comments_Adminhtml_CommentsController extends Mage_Adminhtml_Controlle
 {
   public function indexAction()
   {
-          $this->loadLayout();
-          $this->renderLayout();        
+    $this->loadLayout();
+    $this->renderLayout();
+
   }
 
 
@@ -27,12 +28,10 @@ class Wao_Comments_Adminhtml_CommentsController extends Mage_Adminhtml_Controlle
   {
     $id         = $this->getRequest()->getParam('id');
     $comment    = Mage::getModel('comments/post');
-    try 
-    {
+    try {
       $comment  ->setId($id)->delete();
     }
-    catch (Exception $e)
-    {
+    catch (Exception $e) {
       echo $e->getMessage();
     }
   }
