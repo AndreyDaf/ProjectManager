@@ -6,8 +6,9 @@ class Wao_Project_Block_Adminhtml_Project extends Mage_Adminhtml_Block_Widget_Co
     public function __construct()
     {
         parent::__construct();
+        $this->_headerText = __('Project');
         
-        $this->setTemplate('wao/ProjectButtons.phtml');
+        $this->setTemplate('widget/form/container.phtml');
         
         $this->_addButton('projects', array(
             'label'     => 'All projects',
