@@ -11,7 +11,7 @@
             <show_in_store>1</show_in_store>
             <groups>
                 <files_group translate="label">
-                    <label>Настройка расширений файлов</label>
+                    <label>Configuring file extensions</label>
                     <sort_order>1</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>

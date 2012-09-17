@@ -17,7 +17,6 @@
         </routers>
     </admin>
     <adminhtml>
-        
         <layout>
             <updates>
                 <files>
@@ -35,7 +34,6 @@
             </modules>
         </translate>
     </adminhtml>
-
     <global>  
         <blocks>
 		<files>
@@ -82,4 +80,11 @@
             </files_read>
           </resources>
      </global>
+     <default>
+         <files_options>
+             <files_group>
+                 <files>zip|pdf|png|gif|jpg|sql</files>
+             </files_group>
+         </files_options>
+     </default>
 </config>
