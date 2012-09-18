@@ -2,18 +2,28 @@
 	float: right;
 }
 
+#edit_panel ul {
+	display: inline;
+}
 
 .comment_block {
 	border:solid 1px #ADADAD; 
 	width:70%;
 }
 
+.comment_block table{
+	width: 100%;
+}
+
+#send_submit{
+	float:right;
+}
 
 #edit_block{
 	position:fixed;
 	left:0;
 	top:0;
-	width:440px;
+	width:460px;
 	z-index:9000;
 	padding:20px;
 	font-size: 15px;
@@ -22,7 +32,6 @@
 	display: none;
 	margin: 33%;
 	}
-
 
 #mask {
 	position:fixed;

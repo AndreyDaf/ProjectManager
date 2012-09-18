@@ -34,11 +34,7 @@
                 <input type="submit" id="sort_submit" value="Сортировать" />
             </div>
         </form>
-    </div>
 
-    <br />
-
-    <div id="group_fields4" class="fieldset fieldset-wide">
         <?php
 
         if (Mage::getSingleton('admin/session')->isLoggedIn()) 
@@ -63,17 +59,41 @@
             $comments = Mage::getModel('comments/post')->getCollection();
             $comments = $comments->addFieldToFilter('task',$task)->setOrder('id', $sort_order);
         }
+        ?>
 
+        <form id="post_form" method="POST" action="">        
 
+            <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
+            
+            <input name="url" id="url" type="hidden" value="<?php echo $this->getUrl('comments/adminhtml_comments/add/');?>" />
+            <input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
+            <input name="date" id="date" type="hidden" value="<?php echo (date("Y-m-d H:i:s")); ?>" />
+            <input name="Project_id" id="Project_id" type="hidden" value="<?php echo $project; ?>" />
+            <input name="Task_id" id="Task_id" type="hidden" value="<?php echo $task; ?>" />   
+            <br />
+            <table border = "0">
+                <tr><td>Комментарий:</td></tr>
+                <tr><td><input type="hidden" name="Author" id="Author" value="<?php echo $userName; ?>" /></td></tr>
+                <tr><td><textarea rows="8" cols="95%" name="Comment" id="Comment"></textarea></td></tr>
+                <tr><td><input type="button" id="send_submit" value="Отправить" /></td></tr>
+            </table>
+            
+        </form>
+        
+    </div>
 
+    <br />
+
+    <div id="group_fields4" class="fieldset fieldset-wide">
+        <?php
         foreach ($comments as $item):?>
             <div id="<?php echo ("comment".$item['id']); ?>" class="comment_block">
                 <table>
                             <tr>
-                                <td collspan='2 '><b><?=$item['author']?></b></td>
+                                <td colspan='2'><b><?=$item['author']?></b></td>
                             </tr>
                             <tr>
-                                <td collspan='2'>
+                                <td colspan='2'>
                                     <div id="<?='comm_'.$item['id']?>">
                                         <?=$item['comment']?>
                                     </div>
@@ -81,15 +101,13 @@
                             </tr>
                             <tr>
                                 <td><?=$item['date']?></td>
-                                <td>
-                    
-                                <?php if ($userName == $item['author']): ?>
-                                    <div id="edit_panel">
-                                        <a href="#" onclick="show_edit(<?=$item['id']?>);" id="edit_link">Edit</a> 
-                                        &nbsp 
-                                        <a href="#" onclick="delete_link(<?=$item['id']?>);">Delete</a></div>
-                                <? endif; ?>
-                         
+                                <td>                    
+                                    <?php if ($userName == $item['author']): ?>
+                                        <div id="edit_panel">
+                                            <a href="#" onclick="show_edit(<?=$item['id']?>);" id="edit_link">Edit</a>
+                                            <a href="#" onclick="delete_link(<?=$item['id']?>);">Delete</a>
+                                        </div>
+                                    <? endif; ?>
                                 </td>
                             </tr>
                 </table>
@@ -101,24 +119,6 @@
     </div>
 
     <br />
-
-    <form id="post_form" method="POST" action="">        
-
-        <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
-        
-        <input name="url" id="url" type="hidden" value="<?php echo $this->getUrl('comments/adminhtml_comments/add/');?>" />
-        <input name="form_key" type="hidden" value="<?php echo $formKey; ?>" />
-        <input name="date" id="date" type="hidden" value="<?php echo (date("Y-m-d H:i:s")); ?>" />
-        <input name="Project_id" id="Project_id" type="hidden" value="<?php echo $project; ?>" />
-        <input name="Task_id" id="Task_id" type="hidden" value="<?php echo $task; ?>" />   
-        
-        <table border = "0">
-            <tr><td>Добавить комментарий:</td><td></td></tr>
-            <tr><td>Автор:</td><td><input type="text" name="Author" id="Author" value="<?php echo $userName; ?>" readonly /></td></tr>
-            <tr><td>Комментарий:</td><td><textarea rows="8" cols="85%" name="Comment" id="Comment"></textarea></td></tr>
-        </table>
-        <input type="button" id="send_submit" value="Отправить" />
-    </form>
 
     <div id="edit_block">
         <a href="javascript:hide_edit();">Закрыть</a>

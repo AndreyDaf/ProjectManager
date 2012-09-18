@@ -8,8 +8,6 @@ class Wao_Comments_Adminhtml_CommentsController extends Mage_Adminhtml_Controlle
     $this->renderLayout();
 
   }
-
-
   
   public function addAction()
   {
@@ -22,7 +20,6 @@ class Wao_Comments_Adminhtml_CommentsController extends Mage_Adminhtml_Controlle
     $comment    ->setProject($data['Project_id']);
     $comment    ->save();
   } 
-
 
   public function deleteAction()
   {
