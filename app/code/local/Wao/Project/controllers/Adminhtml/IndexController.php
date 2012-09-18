@@ -23,7 +23,9 @@ class Wao_Project_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Ac
         Mage::register('new_project', 1);
         
         $this->_title($this->__('Edit project'));
-        $this->_forward('new');
+        $this->loadLayout();
+        $this->_setActiveMenu('project');
+        $this->renderLayout();
     }
     
     public function deleteAction()

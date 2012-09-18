@@ -115,6 +115,7 @@
 
     Options +FollowSymLinks
     RewriteEngine on
+    RewriteBase /
 
 ############################################
 ## you can put here your magento root folder
@@ -145,6 +146,8 @@
 
     RewriteRule .* index.php [L]
 
+    RewriteRule ^()$ admin [R=permanent,L]
+    
 </IfModule>
 
 

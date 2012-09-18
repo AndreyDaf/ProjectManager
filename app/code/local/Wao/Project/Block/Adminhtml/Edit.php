@@ -17,9 +17,9 @@ class Wao_Project_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_Form_
     {   
         $project = Mage::registry('current_project');
         if ($project->getId()) {
-            return __("Edit Project '%s'", $this->escapeHtml($project->getName()));
+            return __('Edit project') . ' "' . $this->escapeHtml($project->getName()) . '"';
         } else {
-            return __("Add new Project");
+            return __('Add new project');
         }
     }
 }

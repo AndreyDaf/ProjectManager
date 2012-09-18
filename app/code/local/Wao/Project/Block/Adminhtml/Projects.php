@@ -4,7 +4,7 @@ class Wao_Project_Block_Adminhtml_Projects extends Mage_Adminhtml_Block_Widget_G
 {
     public function __construct()
     {
-        $this->_addButtonLabel = __('Add New Project');
+        $this->_addButtonLabel = __('Add new project');
         $this->_blockGroup = 'project';
         $this->_controller = 'adminhtml_projects';
         $this->_headerText = __('Projects');

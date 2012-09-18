@@ -2,7 +2,7 @@
 <config>
     <menu>
         <project module="project">
-            <title>Project</title>
+            <title>Projects</title>
             <sort_order>1</sort_order>
             <action>project/adminhtml_index</action>
         </project>

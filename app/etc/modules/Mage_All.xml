@@ -272,7 +272,7 @@
             </depends>
         </Mage_Tag>
         <Mage_Cms>
-            <active>false</active>
+            <active>true</active>
             <codePool>core</codePool>
             <depends>
                 <Mage_Core/>
