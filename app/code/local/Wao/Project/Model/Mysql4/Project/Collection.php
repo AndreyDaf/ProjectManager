@@ -17,7 +17,8 @@ class Wao_Project_Model_Mysql4_Project_Collection extends Mage_Core_Model_Mysql4
         if ($roleName != 'admin') {
             $select = $select
                 ->join(array('d' => 'wao_developers'), 'p.id = d.id_project', array())
-                ->where('id_user = ?', $userId);
+                ->where('d.id_user = ?', $userId)
+                ->group('d.id_project');
         }
         
         $this->_select = $select;
