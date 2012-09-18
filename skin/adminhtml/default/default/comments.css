@@ -11,6 +11,11 @@
 	width:70%;
 }
 
+#edit_comment{
+	width: 440px;
+	max-width: 440px;
+}
+
 .comment_block table{
 	width: 100%;
 }

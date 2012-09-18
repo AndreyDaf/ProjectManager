@@ -21,17 +21,17 @@
                 <?php
                     if($sort_order==null || $sort_order=="ASC") 
                     {
-                        echo "<label>Сверху вниз</label><input type='radio' name='sort' value='ASC' checked />";
-                        echo "<label>Знизу вверх</label><input type='radio' name='sort' value='DESC'/>";
+                        echo "<label for='radio_sort1'>Сверху вниз</label><input id='radio_sort1' type='radio' name='sort' value='ASC' checked /><br />";
+                        echo "<label for='radio_sort2'>Знизу вверх</label><input id='radio_sort2' type='radio' name='sort' value='DESC'/>";
                     }
                     else 
                     { 
-                        echo "<label>Сверху вниз</label><input type='radio' name='sort' value='ASC'/>";
-                        echo "<label>Знизу вверх</label><input type='radio' name='sort' value='DESC' checked />";
+                        echo "<label for='radio_sort1'>Сверху вниз</label><input type='radio' name='sort' value='ASC'/><br />";
+                        echo "<label for='radio_sort2'>Знизу вверх</label><input type='radio' name='sort' value='DESC' checked />";
                     }
                 ?>
-
-                <input type="submit" id="sort_submit" value="Сортировать" />
+                
+                <button type="submit" id="sort_submit"><span><span><span>Сортировать</span></span></button>
             </div>
         </form>
 
@@ -75,7 +75,7 @@
                 <tr><td>Комментарий:</td></tr>
                 <tr><td><input type="hidden" name="Author" id="Author" value="<?php echo $userName; ?>" /></td></tr>
                 <tr><td><textarea rows="8" cols="95%" name="Comment" id="Comment"></textarea></td></tr>
-                <tr><td><input type="button" id="send_submit" value="Отправить" /></td></tr>
+                <tr><td><button type="submit" id="send_submit"><span><span><span>Отправить</span></span></button></td></tr>
             </table>
             
         </form>
@@ -133,9 +133,15 @@
             <input type="hidden" name="Author" value="<?php echo $userName; ?>" />
             Комментарий: 
             <br />
-            <textarea rows="8" cols="85%" id="edit_comment" name="Comment"></textarea>
+            <textarea rows="8" id="edit_comment" name="Comment"></textarea>
             <br />
-            <input type="submit" id="save" value="Сохранить" />
+            <button type="submit" id="save">
+                <span>
+                    <span>
+                        <span>Сохранить</span>
+                    </span>
+                </span>
+            </button>
         </form>
     </div>
     
