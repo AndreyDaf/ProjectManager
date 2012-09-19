@@ -1,22 +1,34 @@
-<div class="project_block" style="padding-bottom: 30px;">
-    <div style="float: left;">
-        <div>
-            <?php
+<div class="entry-edit">
+    
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo __('Project\'s description'); ?></h4>
+    </div>
+    <br />
+    
+    <div class="project_block" style="padding-bottom: 30px;">
+        <div style="float: left;">
+            <div>
+                <?php
                 $startDate = $this->getProject()->getStart_date();
                 echo Mage::getModel('core/date')->date('d.m.Y H:i:s', strtotime($startDate));
-            ?>
-        </div>
-        <div>
-            <?php
+                ?>
+            </div>
+            <div>
+                <?php
                 $endDate = $this->getProject()->getEnd_date();
                 echo Mage::getModel('core/date')->date('d.m.Y H:i:s', strtotime($endDate));
-            ?>
+                ?>
+            </div>
         </div>
+        <div style="float: right;"><?php echo $this->getProject()->getStatus() ?></div>
+        <div style="clear: both;"></div>
+
+        <div><hr /></div>
+
+        <div style="padding: 10px 0;"><?php echo $this->getProject()->getDescription() ?></div>
+
+        <div><hr /></div>
+
+        <div><?php echo ($this->getProject()->getRepository()) ? __('Repository') . ': ' . $this->getProject()->getRepository() : ""; ?></div>
     </div>
-    <div style="float: right;"><?php echo $this->getProject()->getStatus() ?></div>
-    <div style="clear: both;"></div>
-
-    <div style="padding: 10px 0;"><?php echo $this->getProject()->getDescription() ?></div>
-
-    <div><?php echo ($this->getProject()->getRepository()) ? __('Repository') . ': ' . $this->getProject()->getRepository() : ""; ?></div>
 </div>
