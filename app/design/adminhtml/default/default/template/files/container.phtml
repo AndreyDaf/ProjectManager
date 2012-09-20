@@ -30,7 +30,7 @@
                     <p><?=$item->getName();?></p>
                 </td>
                 <td class="value">
-                     <a href="<?=$item->getPath();?>" target="_blank"><?=__('Download');?></a><span class="files">(<?=$item->getDate();?> | <?=$item->getAuthor();?>)</span>
+                     <a href="<?=$item->getPath();?>" target="_blank"><?=__('Download');?></a><a class="file_delete" onclick="setLocation('<?php echo $this->getUrl('files/adminhtml_index/delete/',array('id'=>$item->getId()));?>')" href="#"><?=__('Delete');?></a><span class="files">(<?=$item->getDate();?> | <?=$item->getAuthor();?>)</span>
                 </td>
             </tr>
          <? endforeach; }?>
@@ -38,7 +38,7 @@
         </table>
         
         <br /> 
-        <form id="post_form" method="post" enctype="multipart/form-data" action="<?php echo $this->getUrl('files/adminhtml_index/add/');?>">
+        <form id="post_form" method="post" enctype="multipart/form-data" action="<?php $this->getUrl('files/adminhtml_index/delete/');?>">
        
         <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
         <input name="form_key" type="hidden" value="<?=$formKey;?>" />

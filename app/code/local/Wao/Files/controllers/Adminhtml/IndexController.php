@@ -45,8 +45,29 @@
                 $this->_redirectUrl($_SERVER['HTTP_REFERER']);
             }
         }
+        
+        
     }   
     
+    
+    public function deleteAction(){
+        $id = $this->getRequest()->getParam('id');
+        $model = Mage::getModel('files/files')->load($id);
+        $path = Mage::getBaseDir().$model->getPath();
+        
+        if(unlink($path)){
+            $model->setId($id)->delete();
+            Mage::getSingleton('adminhtml/session')
+                        ->addSuccess(__('Success delete'));
+            $this->_redirectUrl($_SERVER['HTTP_REFERER']);
+        } else {
+            $model->setId($id)->delete();
+            Mage::getSingleton('adminhtml/session')
+                            ->addError("Файла не существует!");
+            $this->_redirectUrl($_SERVER['HTTP_REFERER']);
+            
+        }
+    }
      
 }
     
