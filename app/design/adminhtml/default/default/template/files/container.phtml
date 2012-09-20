@@ -38,7 +38,7 @@
         </table>
         
         <br /> 
-        <form id="post_form" method="post" enctype="multipart/form-data" action="<?php $this->getUrl('files/adminhtml_index/delete/');?>">
+        <form id="post_form" method="post" enctype="multipart/form-data" action="<?php echo $this->getUrl('files/adminhtml_index/add/');?>">
        
         <?php $formKey = Mage::getSingleton('core/session')->getFormKey();?>
         <input name="form_key" type="hidden" value="<?=$formKey;?>" />
