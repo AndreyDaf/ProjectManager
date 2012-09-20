@@ -18,13 +18,13 @@ class Wao_Tasks_Block_Adminhtml_Task_Edit_Tabs extends Mage_Adminhtml_Block_Widg
       public function _beforeToHtml()
       {
           $this->roleName = Mage::getSingleton('admin/session')->getWorkerRole();
-          if($this->roleName == 'manager'){
+          if($this->roleName == 'manager' && !Mage::registry('pro_data')){
             $block = $this->blockManager;
          } else {
              $block = $this->blockUser;
              
              }
-         
+          
           $this->addTab('currentTasks', array(
                    'label' => __('General'),
                    'title' => __('General'),

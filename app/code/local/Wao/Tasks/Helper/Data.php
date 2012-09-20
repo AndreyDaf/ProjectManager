@@ -7,5 +7,16 @@ class Wao_Tasks_Helper_Data extends Mage_Core_Helper_Abstract
         return $roleId;
         
     }
+    
+    public function arrayToCollection($array){
+        $collection = new Varien_Data_Collection();
+        foreach ($array as $value) {
+            $item = new Varien_Object();
+            $item->setData($value);
+            $collection->addItem($item);
+        }
+        
+        return $collection;
+    }
 
 }

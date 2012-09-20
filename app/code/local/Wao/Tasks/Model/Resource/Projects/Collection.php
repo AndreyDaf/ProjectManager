@@ -62,10 +62,21 @@ class Wao_Tasks_Model_Resource_Projects_Collection extends Mage_Core_Model_Resou
         if($result){
             $data = $result[0]['name'];
             return $data;
+        } else {
+            return false;
         }
-        
-        else {
-                return false;
-            }
+    }
+    
+    public function getProjectsIdsForManager(){
+        $id_user = Mage::getSingleton('admin/session')->getUser()->getId();
+        $projects_select = $this->getConnection()->select()
+                    ->from('wao_developers')
+                    ->where('id_user = ?', $id_user);
+        $projects = $this->getConnection()->fetchAll($projects_select);
+        $projectsIds = array();
+        foreach($projects as $item){
+            $projectsIds[] = $item['id_project'];
+        }
+        return $projectsIds;
     }
 }

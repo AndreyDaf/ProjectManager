@@ -1,17 +1,16 @@
 <?php
-
 $numColumns = sizeof($this->getColumns());
-?>
-<?php if($this->getCollection()): ?>
+if($this->getCollection()): ?>
 <div class="entry-edit">
-       
-        <?php if($this->getGridHeader()): ?>
-        <div class="entry-edit-head">
+    
+<div id="<?php echo $this->getId() ?>">
+    <?php if($this->getGridHeader()): ?>
+    <div class="entry-edit-head">
         <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->getGridHeader(); ?></h4>
     </div>
-        <?php endif ?>
-
-        <div id="<?php echo $this->getId() ?>">
+    <?php endif ?>
+    
+    
 <div class="grid">
     <div class="hor-scroll">
     <table cellspacing="0" class="data" id="<?php echo $this->getId() ?>_table">
@@ -99,8 +98,10 @@ $numColumns = sizeof($this->getColumns());
     </table>
     </div>
 </div>
-<?php if($this->canDisplayContainer()): ?>
 </div>
+</div>
+<?php if($this->canDisplayContainer()): ?>
+
 <script type="text/javascript">
 //<![CDATA[
     <?php echo $this->getJsObjectName() ?> = new varienGrid('<?php echo $this->getId() ?>', '<?php echo $this->getGridUrl() ?>', '<?php echo $this->getVarNamePage() ?>', '<?php echo $this->getVarNameSort() ?>', '<?php echo $this->getVarNameDir() ?>', '<?php echo $this->getVarNameFilter() ?>');
@@ -122,5 +123,5 @@ $numColumns = sizeof($this->getColumns());
 //]]>
 </script>
 <?php endif; ?>
-</div>
+
 <?php endif ?>

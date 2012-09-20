@@ -11,7 +11,11 @@ class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Gr
         $this->setGridHeader(__('Tasks for this project'));
         $this->setFilterVisibility(false);
         $this->setPagerVisibility(false);
-        $this->setUseAjax(false);
+        $this->setUseAjax(true);
+        $this->setId('taskGrid');
+        $this->setDefaultSort('id');
+        $this->setDefaultDir('DESC');
+        $this->setSaveParametersInSession(true);
         
     }
 
@@ -19,10 +23,10 @@ class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Gr
     {
         $this->roleName = Mage::getSingleton('admin/session')->getWorkerRole();
         $collection = Mage::getModel('tasks/tasks')->getCollection();
-        if($this->roleName == 'manager'){
+        if($this->roleName == 'manager' || $this->roleName == 'admin'){
             $tasksForProject = Mage::getModel('tasks/developers')->getCollection()->getTasksForProject($this->getRequest()->getParam('pr'));
             $collection->addFieldToFilter('id',$tasksForProject);
-        } elseif($this->roleName == 'admin') {} else {
+        }else  {
             $tasksForProjectForUser = Mage::getModel('tasks/developers')->getCollection()->getTasksForProjectForUser($this->getRequest()->getParam('pr'));
             $collection->addFieldToFilter('id',$tasksForProjectForUser);
         }
@@ -51,15 +55,17 @@ class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Gr
                     'align' =>'left',
                     'index' => 'start_date',
                     'type'      => 'datetime',
-                   'format' => 'dd.MM.yyyy HH:mm:ss'
+                    'format' => 'dd.MM.yyyy HH:mm:ss',
+                    'width' => '180px'
               ));
         $this->addColumn('end_date',
                array(
                     'header' => __('End date'),
                     'align' =>'left',
                     'index' => 'end_date',
-                   'type'      => 'datetime',
-                   'format' => 'dd.MM.yyyy HH:mm:ss'
+                    'type'      => 'datetime',
+                    'format' => 'dd.MM.yyyy HH:mm:ss',
+                    'width' => '180px'
               ));
         
         if(Mage::helper('core')->isModuleEnabled('Wao_Statuses') ){
@@ -68,7 +74,7 @@ class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Gr
                     'header' => __('Status'),
                     'align' =>'left',
                     'index' => 'status',
-                   'width' => '100px',
+                    'width' => '180px'
               ));
         }
 
@@ -78,5 +84,10 @@ class Wao_Tasks_Block_Adminhtml_View_Grid extends Mage_Adminhtml_Block_Widget_Gr
     {
          return $this->getUrl('tasks/adminhtml_index/edit', array('id' => $row->getId()));
     }
+    
+    public function getGridUrl() {
+        return $this->getUrl('tasks/adminhtml_index/grid2', array('_current' => true));
+    }
+    
 
 }

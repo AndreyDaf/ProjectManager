@@ -1,13 +1,11 @@
 <?php
     class Wao_Tasks_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Action {
      
-   
-        
         public function indexAction(){
           $this->loadLayout()->_title($this->__('Tasks'));
           $this->_setActiveMenu('tasks');
           $this->renderLayout();
-    }
+        }
     
       public function editAction()
       {
@@ -32,6 +30,7 @@
              
              if(preg_match('/project/',$referer)){
                  $this->_setActiveMenu('project');
+                 Mage::register('pro_data', 1);
              } else {
                $this->_setActiveMenu('tasks');  
              }
@@ -161,8 +160,6 @@
                     ->setId($id)->save();
                  }
                  
-                 
-                 
                  Mage::getSingleton('adminhtml/session')
                                ->addSuccess(__('Task is sent to the moderation'));
                  Mage::getSingleton('adminhtml/session')
@@ -182,6 +179,22 @@
               }
               $this->_redirect('*/*/');
             }
+            
+    public function gridAction()
+    {
+        $this->loadLayout();
+        $this->getResponse()->setBody(
+            $this->getLayout()->createBlock('tasks/adminhtml_task_grid')->toHtml()
+        );
+    }
+    
+    public function grid2Action()
+    {
+        $this->loadLayout();
+        $this->getResponse()->setBody(
+            $this->getLayout()->createBlock('tasks/adminhtml_view_grid')->toHtml()
+        );
+    }
    
 }
     
