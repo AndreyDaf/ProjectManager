@@ -52,6 +52,7 @@ class Wao_Project_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUserRoleId()
     {
+        // Test
         $userSession = Mage::getSingleton('admin/session');
         
         return $userSession->getUser()->getRole()->getRoleId();
